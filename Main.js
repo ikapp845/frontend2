@@ -10,7 +10,7 @@ const Stack = createStackNavigator();
 export default function Main() {
   return (
     <View style={styles.main}>
-      <Group></Group>
+      <Questionnaire></Questionnaire>
     </View>
     // <NavigationContainer>
     //   <Stack.Navigator>

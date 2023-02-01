@@ -35,7 +35,21 @@ export default function Join({ navigation }) {
           { backgroundColor: "white", marginTop: 16 },
           link === "" ? { opacity: 0.5 } : { opacity: 1 },
         ]}
-        onPress={() => {}}
+        onPress={() => {
+          axios
+            .post(uri + "group/join_group/", {
+              group: link,
+              username: "sammy",
+            })
+            .then((result) => {
+              if (result.data == "Success") {
+                console.log("Move to question");
+              }
+            })
+            .catch((err) => {
+              alert(err.data);
+            });
+        }}
       >
         <Text style={{ fontSize: 16 }}>Join</Text>
       </TouchableOpacity>
