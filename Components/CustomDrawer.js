@@ -25,6 +25,8 @@ export default function CustomDrawer(props) {
   const [head, setHead] = useState("");
   const [head2, setHead2] = useState("");
   const [head3, setHead3] = useState("");
+  const [currentgroup, setCurrentgroup] = useState();
+
   function share() {}
 
   function leavegroup() {
@@ -69,6 +71,9 @@ export default function CustomDrawer(props) {
         head={head}
         head2={head2}
         head3={head3}
+        currentgroup={currentgroup}
+        stateful={props.stateful}
+        setStateful={props.setStateful}
       ></Popup>
       <View style={styles.top}>
         <View style={styles.profilepic}>
@@ -101,18 +106,25 @@ export default function CustomDrawer(props) {
         <Text style={styles.createtext}> Create a group</Text>
         <Vertical></Vertical>
       </TouchableOpacity>
-      <View style={styles.create}>
-        <TouchableOpacity style={{ width: "90%" }}>
-          <Text style={[styles.createtext, { marginLeft: 25 }]}>Main</Text>
-        </TouchableOpacity>
-        <Pressable
-          onPress={() => {
-            setModalvisiblegroup(true);
-          }}
-        >
-          <Vertical></Vertical>
-        </Pressable>
-      </View>
+      {props.result
+        ? props.result.map((obj) => (
+            <View key={obj.group.id} style={styles.create}>
+              <TouchableOpacity style={{ width: "90%" }}>
+                <Text style={[styles.createtext, { marginLeft: 25 }]}>
+                  {obj.group.name}
+                </Text>
+              </TouchableOpacity>
+              <Pressable
+                onPress={() => {
+                  setModalvisiblegroup(true);
+                  setCurrentgroup(obj.group.id);
+                }}
+              >
+                <Vertical></Vertical>
+              </Pressable>
+            </View>
+          ))
+        : ""}
 
       <DrawerContentScrollView {...props}>
         <DrawerItemList {...props} />

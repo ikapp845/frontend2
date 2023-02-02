@@ -1,4 +1,6 @@
 import { View, Modal, Text, StyleSheet, TouchableOpacity } from "react-native";
+import axios from "axios";
+import { uri } from "../Link";
 
 export default function Popup(props) {
   return (
@@ -13,7 +15,28 @@ export default function Popup(props) {
       <View style={styles.pop}>
         <Text style={styles.head}>{props.head}</Text>
         <Text style={styles.head2}>{props.head2}</Text>
-        <TouchableOpacity style={styles.leave}>
+        <TouchableOpacity
+          style={styles.leave}
+          onPress={() => {
+            if (props.head3 == "leave") {
+              axios
+                .post(uri + "group/leave/", {
+                  username: "raju",
+                  group: props.currentgroup,
+                })
+                .then((result) => {
+                  if (result.data == "removed") {
+                    props.setStateful(props.stateful + 1);
+                    props.setModalvisible(false);
+                  }
+                })
+                .catch((err) => {
+                  alert(err.data);
+                });
+            } else {
+            }
+          }}
+        >
           <Text style={styles.leavetext}>{props.head3}</Text>
         </TouchableOpacity>
         <TouchableOpacity
