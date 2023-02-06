@@ -7,7 +7,7 @@ import UsernameSearch from "../Components/UsernameSearch";
 import { useState } from "react";
 import Timer from "./Timer";
 
-export default function Main({ navigation }) {
+export default function Main(props) {
   return (
     <View
       style={[
@@ -16,7 +16,7 @@ export default function Main({ navigation }) {
       ]}
     >
       <View style={styles.header}>
-        <ProfilePic navigation={navigation} val={40}></ProfilePic>
+        <ProfilePic navigation={props.navigation} val={40}></ProfilePic>
         <Text style={styles.slidetext}>1 of 12</Text>
         <LikeButton></LikeButton>
       </View>

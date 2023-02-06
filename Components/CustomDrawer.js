@@ -109,7 +109,13 @@ export default function CustomDrawer(props) {
       {props.result
         ? props.result.map((obj) => (
             <View key={obj.group.id} style={styles.create}>
-              <TouchableOpacity style={{ width: "90%" }}>
+              <TouchableOpacity
+                style={{ width: "90%" }}
+                onPress={() => {
+                  props.setSelectedgroup(obj.group.id);
+                  navigation.closeDrawer();
+                }}
+              >
                 <Text style={[styles.createtext, { marginLeft: 25 }]}>
                   {obj.group.name}
                 </Text>

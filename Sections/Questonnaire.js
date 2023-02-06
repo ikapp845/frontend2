@@ -9,10 +9,15 @@ import { uri } from "../Link";
 const Drawer = createDrawerNavigator();
 
 export default function Questonnaire() {
+  const [selectedgroup, setSelectedgroup] = useState("zsgs");
   const [groups, setGroups] = useState();
   const [total_like, setTotal_like] = useState();
   const [stateful, setStateful] = useState(0);
   const a = { setStateful: setStateful, stateful: stateful };
+  const b = {
+    setSelectedgroup: setSelectedgroup,
+    selectedgroup: selectedgroup,
+  };
 
   useEffect(() => {
     axios
@@ -31,19 +36,20 @@ export default function Questonnaire() {
     <NavigationContainer>
       <Drawer.Navigator
         drawerContent={(props) => (
-          <CustomDrawer {...props} {...groups} {...a} />
+          <CustomDrawer {...props} {...groups} {...a} {...b} />
         )}
       >
         <Drawer.Screen
           name={"Main"}
-          component={Main}
           options={{
             drawerItemStyle: {
               height: 0,
             },
             headerShown: false,
           }}
-        ></Drawer.Screen>
+        >
+          {(props) => <Main {...props} {...b}></Main>}
+        </Drawer.Screen>
       </Drawer.Navigator>
     </NavigationContainer>
   );
