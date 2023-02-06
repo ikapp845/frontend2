@@ -113,7 +113,7 @@ export default function CustomDrawer(props) {
                 style={{ width: "90%" }}
                 onPress={() => {
                   props.setSelectedgroup(obj.group.id);
-                  navigation.closeDrawer();
+                  props.navigation.closeDrawer();
                 }}
               >
                 <Text style={[styles.createtext, { marginLeft: 25 }]}>
