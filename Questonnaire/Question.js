@@ -2,12 +2,20 @@ import { View, StyleSheet, Text } from "react-native";
 import Label from "../Components/Label";
 import LabelAnswered from "../Components/LabelAnswered";
 
-export default function Question() {
+export default function Question(props) {
   return (
     <View style={styles.question}>
       <Text style={styles.questiontext}>Who has the cutest smile?</Text>
-      <Label></Label>
       {/* Use Scroll View when using the map function to wrap it */}
+      {props.group_members
+        ? props.group_members.map((obj, index) => {
+            if (obj.user.name == "raju") {
+              return;
+            } else {
+              return <Label key={index} name={obj.user.name}></Label>;
+            }
+          })
+        : ""}
       <LabelAnswered></LabelAnswered>
     </View>
   );

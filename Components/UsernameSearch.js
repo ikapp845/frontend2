@@ -1,13 +1,17 @@
 import { View, TextInput, StyleSheet } from "react-native";
 import Search from "../Icon/Search";
 
-export default function UsernameSearch() {
+export default function UsernameSearch(props) {
   return (
     <View style={styles.search}>
       <TextInput
         style={styles.input}
         placeholder={"Username"}
         placeholderTextColor={"rgba(0,0,0,0.5019607843137255 )"}
+        value={props.search}
+        onChangeText={(e) => {
+          props.setSearch(e);
+        }}
       ></TextInput>
       <Search></Search>
     </View>

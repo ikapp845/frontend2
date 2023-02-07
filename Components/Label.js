@@ -1,11 +1,11 @@
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import ProfilePic from "./ProfilePic";
 
-export default function Label() {
+export default function Label(props) {
   return (
     <TouchableOpacity style={styles.label}>
       <ProfilePic val={32} navigation={() => {}}></ProfilePic>
-      <Text style={styles.name}>Steve Gates</Text>
+      <Text style={styles.name}>{props.name}</Text>
     </TouchableOpacity>
   );
 }
