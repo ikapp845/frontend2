@@ -2,10 +2,13 @@ import { View, StyleSheet, Text } from "react-native";
 import ProfilePic from "./ProfilePic";
 
 export default function LabelAnswered(props) {
-  console.log(props.likes);
-  let percentage =
-    String((Number(props.likes) * 100) / Number(props.total_likes)) + "%";
-  console.log(percentage);
+  let percentage;
+  if (props.likes == undefined) {
+    percentage = "18%";
+  } else {
+    percentage =
+      String((Number(props.likes) * 100) / Number(props.total_likes)) + "%";
+  }
   return (
     <View style={styles.label1}>
       <View style={[styles.label, { width: percentage }]}>
