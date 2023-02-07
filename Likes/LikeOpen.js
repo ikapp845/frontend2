@@ -2,7 +2,6 @@ import { View, Modal, StyleSheet, Text, TouchableOpacity } from "react-native";
 import LabelAnswered from "../Components/LabelAnswered";
 
 export default function LikeOpen(props) {
-  console.log(props.user);
   return (
     <Modal
       transparent={true}
