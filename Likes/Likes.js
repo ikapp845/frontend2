@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import Pinkheart from "../Icon/Pinkheart";
 import Blueheart from "../Icon/Blueheart";
-import Yelloheart from "../Icon/Yellowheart";
+import Yellowheart from "../Icon/Yellowheart";
 import axios, { Axios } from "axios";
 import { useEffect, useState } from "react";
 import { uri } from "../Link";
@@ -29,39 +29,56 @@ export default function Likes(props) {
       style={{ backgroundColor: "#ffffff", paddingTop: 15, paddingBottom: 20 }}
     >
       {likes
-        ? likes.map(() => (
-            <TouchableOpacity
-              style={[styles.like, { backgroundColor: "white" }]}
-              onPress={() => {
-                props.setModalvisible(true);
-              }}
-            >
-              {/* background color:"#f0f0f2" for viewed ones*/}
-              <Pinkheart></Pinkheart>
-              <Text
-                style={{
-                  width: "60%",
-                  fontSize: 16,
-                  opacity: 0.8700000047683716,
-                  marginLeft: 20,
+        ? likes.map((obj, index) => {
+            let gender;
+            let gendertext;
+            if (obj.from_gender == "male") {
+              gender = <Blueheart></Blueheart>;
+              gendertext = "Boy";
+            } else if (obj.from_gender == "female") {
+              gender = <Pinkheart></Pinkheart>;
+              gendertext = "Girl";
+            } else {
+              gender = <Yellowheart></Yellowheart>;
+              gendertext = "Other";
+            }
+            return (
+              <TouchableOpacity
+                key={index}
+                style={[styles.like, { backgroundColor: "white" }]}
+                onPress={() => {
+                  props.setQuestion(obj.question);
+                  props.setModalvisible(true);
+                  props.setUser(obj);
                 }}
               >
-                From a Girl
-              </Text>
-              <View
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
+                {/* background color:"#f0f0f2" for viewed ones*/}
+                {gender}
+                <Text
+                  style={{
+                    width: "60%",
+                    fontSize: 16,
+                    opacity: 0.8700000047683716,
+                    marginLeft: 20,
+                  }}
+                >
+                  From a {gendertext}
+                </Text>
                 <View
-                  style={{ width: 2, height: 2, backgroundColor: "#bcbcbc" }}
-                ></View>
-                <Text style={{ fontSize: 12, color: "#bcbcbc" }}> 2m</Text>
-              </View>
-            </TouchableOpacity>
-          ))
+                  style={{
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <View
+                    style={{ width: 2, height: 2, backgroundColor: "#bcbcbc" }}
+                  ></View>
+                  {/* <Text style={{ fontSize: 12, color: "#bcbcbc" }}> 2m</Text> */}
+                </View>
+              </TouchableOpacity>
+            );
+          })
         : ""}
     </ScrollView>
   );

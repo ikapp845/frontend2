@@ -12,6 +12,15 @@ const Tab = createMaterialTopTabNavigator();
 export default function LikePage(props) {
   const [modalvisible, setModalvisible] = useState(false);
   const [activated, setActivated] = useState(true);
+  const [question, setQuestion] = useState("");
+  const [user, setUser] = useState();
+  const a = {
+    question: question,
+    setQuestion: setQuestion,
+    user: user,
+    setUser: setUser,
+  };
+
   return (
     <Modal
       transparent={true}
@@ -25,6 +34,8 @@ export default function LikePage(props) {
       <LikeOpen
         modalvisible={modalvisible}
         setModalvisible={setModalvisible}
+        question={question}
+        user={user}
       ></LikeOpen>
 
       <View style={styles.like}>
@@ -61,7 +72,7 @@ export default function LikePage(props) {
           >
             <Tab.Screen name="Me">
               {(props) => (
-                <Likes {...props} setModalvisible={setModalvisible} />
+                <Likes {...props} {...a} setModalvisible={setModalvisible} />
               )}
             </Tab.Screen>
             <Tab.Screen name="Friends" component={Friends}></Tab.Screen>

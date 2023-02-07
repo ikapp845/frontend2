@@ -2,6 +2,7 @@ import { View, Modal, StyleSheet, Text, TouchableOpacity } from "react-native";
 import LabelAnswered from "../Components/LabelAnswered";
 
 export default function LikeOpen(props) {
+  console.log(props.user);
   return (
     <Modal
       transparent={true}
@@ -13,8 +14,12 @@ export default function LikeOpen(props) {
     >
       <View style={styles.likeopen}>
         <View style={styles.box}>
-          <Text style={styles.question}>Hottest person you ever met</Text>
-          <LabelAnswered></LabelAnswered>
+          <Text style={styles.question}>{props.question}</Text>
+          <LabelAnswered
+            name={"raju"}
+            total_likes={props.user.total_question_like}
+            likes={props.user.question_likes}
+          ></LabelAnswered>
         </View>
         <TouchableOpacity
           style={[styles.common, styles.sent, { marginTop: "30%" }]}

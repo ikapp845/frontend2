@@ -1,12 +1,16 @@
 import { View, StyleSheet, Text } from "react-native";
 import ProfilePic from "./ProfilePic";
 
-export default function LabelAnswered() {
+export default function LabelAnswered(props) {
+  console.log(props.likes);
+  let percentage =
+    String((Number(props.likes) * 100) / Number(props.total_likes)) + "%";
+  console.log(percentage);
   return (
     <View style={styles.label1}>
-      <View style={[styles.label, { width: "30%" }]}>
+      <View style={[styles.label, { width: percentage }]}>
         <ProfilePic val={32} navigation={() => {}}></ProfilePic>
-        <Text style={styles.name}>Steve Gates</Text>
+        <Text style={styles.name}>{props.name}</Text>
       </View>
     </View>
   );
