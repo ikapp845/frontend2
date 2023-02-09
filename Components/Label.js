@@ -8,7 +8,21 @@ export default function Label(props) {
     <TouchableOpacity
       style={styles.label}
       onPress={() => {
-        axios.post(uri + "like/");
+        axios
+          .post(uri + "like/", {
+            username1: "raju",
+            username2: props.name,
+            question: props.questionid,
+            group: props.group,
+            // username1 - from user
+            // username2 = to user
+          })
+          .then((result) => {
+            console.log(result.data);
+          })
+          .catch((err) => {
+            alert("Please check your internet connection");
+          });
       }}
     >
       <ProfilePic val={32} navigation={() => {}}></ProfilePic>

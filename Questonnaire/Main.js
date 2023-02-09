@@ -76,6 +76,7 @@ export default function Main(props) {
       <Question
         group_members={display}
         question={questions[questionnumber]}
+        group={props.selectedgroup}
       ></Question>
       <UsernameSearch serach={search} setSearch={setSearch}></UsernameSearch>
     </View>

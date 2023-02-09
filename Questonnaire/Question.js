@@ -17,6 +17,7 @@ export default function Question(props) {
                   key={index}
                   name={obj.user.name}
                   questionid={props.question[0]}
+                  group={props.group}
                 ></Label>
               );
             }
