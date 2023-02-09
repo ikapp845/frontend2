@@ -11,14 +11,12 @@ const Drawer = createDrawerNavigator();
 export default function Questonnaire() {
   const [selectedgroup, setSelectedgroup] = useState("zsgs");
   const [groups, setGroups] = useState();
-  const [total_like, setTotal_like] = useState();
   const [stateful, setStateful] = useState(0);
   const a = { setStateful: setStateful, stateful: stateful };
   const b = {
     setSelectedgroup: setSelectedgroup,
     selectedgroup: selectedgroup,
   };
-
   useEffect(() => {
     axios
       .get(uri + "group/user_groups/" + "raju")

@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import ProfilePic from "./ProfilePic";
 import axios from "axios";
 import { uri } from "../Link";
@@ -19,9 +19,11 @@ export default function Label(props) {
           })
           .then((result) => {
             console.log(result.data);
+            if (result.data === "Liked") {
+            }
           })
           .catch((err) => {
-            alert("Please check your internet connection");
+            alert(err.data);
           });
       }}
     >

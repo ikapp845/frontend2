@@ -8,7 +8,7 @@ import {
 import Pinkheart from "../Icon/Pinkheart";
 import Blueheart from "../Icon/Blueheart";
 import Yellowheart from "../Icon/Yellowheart";
-import axios, { Axios } from "axios";
+import axios from "axios";
 import { useEffect, useState } from "react";
 import { uri } from "../Link";
 

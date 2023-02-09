@@ -1,11 +1,18 @@
 import { View, StyleSheet, Text } from "react-native";
 import Label from "../Components/Label";
 import LabelAnswered from "../Components/LabelAnswered";
+import axios from "axios";
+import { uri } from "../Link";
+import { useState, useEffect } from "react";
 
 export default function Question(props) {
+  const [result, setResult] = useState();
+
   return (
     <View style={styles.question}>
-      <Text style={styles.questiontext}>{props.question[1]}</Text>
+      <Text style={styles.questiontext}>
+        {props.question ? props.question[1] : ""}
+      </Text>
       {/* Use Scroll View when using the map function to wrap it */}
       {props.group_members
         ? props.group_members.map((obj, index) => {
@@ -16,7 +23,7 @@ export default function Question(props) {
                 <Label
                   key={index}
                   name={obj.user.name}
-                  questionid={props.question[0]}
+                  questionid={props.question ? props.question[0] : ""}
                   group={props.group}
                 ></Label>
               );

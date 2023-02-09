@@ -35,7 +35,7 @@ export default function LikePage(props) {
         modalvisible={modalvisible}
         setModalvisible={setModalvisible}
         question={question}
-        user={user}
+        user={user ? user : { total_question_like: 0, question_likes: 0 }}
       ></LikeOpen>
 
       <View style={styles.like}>

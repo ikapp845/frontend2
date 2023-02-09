@@ -16,8 +16,12 @@ export default function LikeOpen(props) {
           <Text style={styles.question}>{props.question}</Text>
           <LabelAnswered
             name={"raju"}
-            total_likes={props.user.total_question_like}
-            likes={props.user.question_likes}
+            total_likes={
+              props.user.total_question_like
+                ? props.user.total_question_like
+                : 0
+            }
+            likes={props.user.question_likes ? props.user.question_likes : 0}
           ></LabelAnswered>
         </View>
         <TouchableOpacity

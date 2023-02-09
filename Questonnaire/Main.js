@@ -49,6 +49,25 @@ export default function Main(props) {
         alert;
       });
   }, [props.selectedgroup]);
+  // useEffect(() => {
+  //   console.log(answered);
+  //   if (answered == true) {
+  //     axios
+  //       .get(
+  //         uri +
+  //           "like/like_count/" +
+  //           String(props.group) +
+  //           "/" +
+  //           props.question[0]
+  //       )
+  //       .then((result) => {
+  //         console.log(result.data);
+  //       })
+  //       .catch((err) => {
+  //         alert("Please check your internet connection");
+  //       });
+  //   }
+  // }, []);
   return (
     <View
       style={[
