@@ -112,7 +112,7 @@ export default function CustomDrawer(props) {
               <TouchableOpacity
                 style={{ width: "90%" }}
                 onPress={() => {
-                  props.setSelectedgroup(obj.group.id);
+                  props.setSelectedgroup(obj.group.name);
                   props.navigation.closeDrawer();
                 }}
               >

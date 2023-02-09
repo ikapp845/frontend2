@@ -5,14 +5,20 @@ import LabelAnswered from "../Components/LabelAnswered";
 export default function Question(props) {
   return (
     <View style={styles.question}>
-      <Text style={styles.questiontext}>Who has the cutest smile?</Text>
+      <Text style={styles.questiontext}>{props.question[1]}</Text>
       {/* Use Scroll View when using the map function to wrap it */}
       {props.group_members
         ? props.group_members.map((obj, index) => {
             if (obj.user.name == "raju") {
               return;
             } else {
-              return <Label key={index} name={obj.user.name}></Label>;
+              return (
+                <Label
+                  key={index}
+                  name={obj.user.name}
+                  questionid={props.question[0]}
+                ></Label>
+              );
             }
           })
         : ""}

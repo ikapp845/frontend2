@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Button, Touchable } from "react-native";
 import LikeButton from "../Components/LikeButton";
 import BackgroundColour from "../Styles/Background";
 import ProfilePic from "../Components/ProfilePic";
@@ -13,16 +13,20 @@ export default function Main(props) {
   const [group_members, setGroup_members] = useState();
   const [search, setSearch] = useState("");
   const [display, setDisplay] = useState([]);
+  const [questions, setQuestions] = useState([]);
+  const [questionnumber, setQuestionnumber] = useState(0);
+  const [answered, setAnswered] = useState(false);
   useEffect(() => {
     axios
-      .get(uri + "group/group_members/" + "a")
+      .get(uri + "group/group_members/" + props.selectedgroup + "/")
       .then((result) => {
         setGroup_members(result.data);
+        setDisplay(result.data);
       })
       .catch((err) => {
         alert("Please check your internet connection");
       });
-  }, []);
+  }, [props.selectedgroup]);
   useEffect(() => {
     if (search == "" || search == " ") {
       setDisplay(group_members);
@@ -35,6 +39,16 @@ export default function Main(props) {
       }
     }
   }, [search]);
+  useEffect(() => {
+    axios
+      .get(uri + "group/group_question/" + props.selectedgroup + "/" + "raju")
+      .then((result) => {
+        setQuestions(result.data);
+      })
+      .catch((err) => {
+        alert;
+      });
+  }, [props.selectedgroup]);
   return (
     <View
       style={[
@@ -44,10 +58,25 @@ export default function Main(props) {
     >
       <View style={styles.header}>
         <ProfilePic navigation={props.navigation} val={40}></ProfilePic>
-        <Text style={styles.slidetext}>1 of 12</Text>
+        {answered ? (
+          <Touchable
+            onPress={() => {
+              setAnswered(false);
+              setQuestionnumber(questionnumber + 1);
+            }}
+          >
+            <Text>Next</Text>
+          </Touchable>
+        ) : (
+          <Text style={styles.slidetext}>1 of 12</Text>
+        )}
+
         <LikeButton></LikeButton>
       </View>
-      <Question group_members={display}></Question>
+      <Question
+        group_members={display}
+        question={questions[questionnumber]}
+      ></Question>
       <UsernameSearch serach={search} setSearch={setSearch}></UsernameSearch>
     </View>
   );
