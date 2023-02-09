@@ -7,19 +7,19 @@ const Stack = createStackNavigator();
 
 export default function Group() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
-          name="Join"
-          component={Join}
-          options={{ headerShown: false }}
-        ></Stack.Screen>
-        <Stack.Screen
-          name="Create"
-          component={Create}
-          options={{ headerShown: false }}
-        ></Stack.Screen>
-      </Stack.Navigator>
-    </NavigationContainer>
+    // <NavigationContainer>
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Join"
+        component={Join}
+        options={{ headerShown: false }}
+      ></Stack.Screen>
+      <Stack.Screen
+        name="Create"
+        component={Create}
+        options={{ headerShown: false }}
+      ></Stack.Screen>
+    </Stack.Navigator>
+    // {/* </NavigationContainer> */}
   );
 }

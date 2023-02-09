@@ -1,16 +1,11 @@
 import { View, StyleSheet, Text } from "react-native";
-import Entry from "./Sections/Entry";
-import { NavigationContainer } from "@react-navigation/native";
-import Group from "./Sections/Group";
-import Questionnaire from "./Sections/Questonnaire";
 import { createStackNavigator } from "@react-navigation/stack";
-
-const Stack = createStackNavigator();
+import Second from "./Second";
 
 export default function Main() {
   return (
     <View style={styles.main}>
-      <Questionnaire></Questionnaire>
+      <Second></Second>
     </View>
     // <NavigationContainer>
     //   <Stack.Navigator>

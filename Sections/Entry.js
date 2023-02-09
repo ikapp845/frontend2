@@ -17,35 +17,33 @@ export default function Entry() {
   return (
     <UserContext.Provider value={[username, setUsername]}>
       <GenderContext.Provider value={[gender, setGender]}>
-        <NavigationContainer>
-          <Stack.Navigator>
-            <Stack.Screen
-              name="First"
-              component={First}
-              options={{ headerShown: false }}
-            ></Stack.Screen>
-            <Stack.Screen
-              name="Username"
-              component={Username}
-              options={{ headerShown: false }}
-            ></Stack.Screen>
-            <Stack.Screen
-              name="Gender"
-              component={Gender}
-              options={{ headerShown: false }}
-            ></Stack.Screen>
-            <Stack.Screen
-              name="Pic"
-              component={Pic}
-              options={{ headerShown: false }}
-            ></Stack.Screen>
-            <Stack.Screen
-              name="Camera"
-              component={Camera1}
-              options={{ headerShown: false }}
-            ></Stack.Screen>
-          </Stack.Navigator>
-        </NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="First"
+            component={First}
+            options={{ headerShown: false }}
+          ></Stack.Screen>
+          <Stack.Screen
+            name="Username"
+            component={Username}
+            options={{ headerShown: false }}
+          ></Stack.Screen>
+          <Stack.Screen
+            name="Gender"
+            component={Gender}
+            options={{ headerShown: false }}
+          ></Stack.Screen>
+          <Stack.Screen
+            name="Pic"
+            component={Pic}
+            options={{ headerShown: false }}
+          ></Stack.Screen>
+          <Stack.Screen
+            name="Camera"
+            component={Camera1}
+            options={{ headerShown: false }}
+          ></Stack.Screen>
+        </Stack.Navigator>
       </GenderContext.Provider>
     </UserContext.Provider>
   );
