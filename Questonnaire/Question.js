@@ -6,7 +6,6 @@ import { uri } from "../Link";
 import { useState, useEffect } from "react";
 
 export default function Question(props) {
-  const [resultdata, setResultdata] = useState();
   return (
     <View style={styles.question}>
       <Text style={styles.questiontext}>
@@ -18,23 +17,24 @@ export default function Question(props) {
             if (obj.user.name == "raju") {
               return;
             } else {
-              if (!resultdata) {
+              if (!props.resultdata) {
                 return (
                   <Label
                     key={index}
                     name={obj.user.name}
                     questionid={props.question ? props.question[0] : ""}
                     group={props.group}
-                    resultdata={resultdata}
-                    setResultdata={setResultdata}
+                    resultdata={props.resultdata}
+                    setResultdata={props.setResultdata}
                   ></Label>
                 );
               } else {
                 return (
                   <LabelAnswered
+                    key={index}
                     name={obj.user.name}
-                    likes={resultdata[obj.user.name].count}
-                    total_likes={resultdata["total"]}
+                    likes={props.resultdata[obj.user.name].count}
+                    total_likes={props.resultdata["total"]}
                   ></LabelAnswered>
                 );
               }

@@ -28,7 +28,6 @@ export default function Label(props) {
                     props.questionid
                 )
                 .then((result) => {
-                  console.log(result.data);
                   props.setResultdata(result.data);
                 })
                 .catch((err) => {

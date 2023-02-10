@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import { uri } from "../Link";
 import axios from "axios";
 import Timer from "./Timer";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function Main(props) {
   const [group_members, setGroup_members] = useState();
@@ -15,7 +16,9 @@ export default function Main(props) {
   const [display, setDisplay] = useState([]);
   const [questions, setQuestions] = useState([]);
   const [questionnumber, setQuestionnumber] = useState(0);
-  const [answered, setAnswered] = useState(0);
+  const [answer, setAnswer] = useState();
+  const [resultdata, setResultdata] = useState();
+
   useEffect(() => {
     axios
       .get(uri + "group/group_members/" + props.selectedgroup + "/")
@@ -57,25 +60,39 @@ export default function Main(props) {
     >
       <View style={styles.header}>
         <ProfilePic navigation={props.navigation} val={40}></ProfilePic>
-        {answered ? (
-          <Touchable
+        {resultdata ? (
+          <TouchableOpacity
+            style={{ alignItems: "center" }}
             onPress={() => {
-              setAnswered(false);
+              setResultdata();
               setQuestionnumber(questionnumber + 1);
             }}
           >
-            <Text>Next</Text>
-          </Touchable>
+            <Text
+              style={[
+                styles.slidetext,
+                {
+                  backgroundColor: "rgba(200,200,200,0.5)",
+                  padding: 10,
+                  borderRadius: 15,
+                },
+              ]}
+            >
+              Next
+            </Text>
+          </TouchableOpacity>
         ) : (
-          <Text style={styles.slidetext}>1 of 12</Text>
+          <Text style={styles.slidetext}>{questionnumber} of 12</Text>
         )}
-
         <LikeButton></LikeButton>
       </View>
+
       <Question
         group_members={display}
         question={questions[questionnumber]}
         group={props.selectedgroup}
+        resultdata={resultdata}
+        setResultdata={setResultdata}
       ></Question>
       <UsernameSearch serach={search} setSearch={setSearch}></UsernameSearch>
     </View>
