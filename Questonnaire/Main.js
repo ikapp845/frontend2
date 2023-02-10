@@ -16,7 +16,7 @@ export default function Main(props) {
   const [display, setDisplay] = useState([]);
   const [questions, setQuestions] = useState([]);
   const [questionnumber, setQuestionnumber] = useState(0);
-  const [answer, setAnswer] = useState();
+  const [timer, setTimer] = useState(false);
   const [resultdata, setResultdata] = useState();
 
   useEffect(() => {
@@ -65,7 +65,11 @@ export default function Main(props) {
             style={{ alignItems: "center" }}
             onPress={() => {
               setResultdata();
-              setQuestionnumber(questionnumber + 1);
+              if (questionnumber == 9) {
+                setTimer(true);
+              } else {
+                setQuestionnumber(questionnumber + 1);
+              }
             }}
           >
             <Text
@@ -82,19 +86,27 @@ export default function Main(props) {
             </Text>
           </TouchableOpacity>
         ) : (
-          <Text style={styles.slidetext}>{questionnumber} of 12</Text>
+          <Text style={styles.slidetext}>{questionnumber + 1} of 10</Text>
         )}
         <LikeButton></LikeButton>
       </View>
-
-      <Question
-        group_members={display}
-        question={questions[questionnumber]}
-        group={props.selectedgroup}
-        resultdata={resultdata}
-        setResultdata={setResultdata}
-      ></Question>
-      <UsernameSearch serach={search} setSearch={setSearch}></UsernameSearch>
+      {timer ? (
+        <Timer></Timer>
+      ) : (
+        <View>
+          <Question
+            group_members={display}
+            question={questions[questionnumber]}
+            group={props.selectedgroup}
+            resultdata={resultdata}
+            setResultdata={setResultdata}
+          ></Question>
+          <UsernameSearch
+            serach={search}
+            setSearch={setSearch}
+          ></UsernameSearch>
+        </View>
+      )}
     </View>
   );
 }
