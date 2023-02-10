@@ -18,8 +18,22 @@ export default function Label(props) {
             // username2 = to user
           })
           .then((result) => {
-            console.log(result.data);
             if (result.data === "Liked") {
+              axios
+                .get(
+                  uri +
+                    "like/like_count/" +
+                    props.group +
+                    "/" +
+                    props.questionid
+                )
+                .then((result) => {
+                  console.log(result.data);
+                  props.setResultdata(result.data);
+                })
+                .catch((err) => {
+                  alert("Please check your internet connection");
+                });
             }
           })
           .catch((err) => {

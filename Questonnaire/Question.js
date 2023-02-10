@@ -6,31 +6,41 @@ import { uri } from "../Link";
 import { useState, useEffect } from "react";
 
 export default function Question(props) {
-  const [result, setResult] = useState();
-
+  const [resultdata, setResultdata] = useState();
   return (
     <View style={styles.question}>
       <Text style={styles.questiontext}>
         {props.question ? props.question[1] : ""}
       </Text>
-      {/* Use Scroll View when using the map function to wrap it */}
+
       {props.group_members
         ? props.group_members.map((obj, index) => {
             if (obj.user.name == "raju") {
               return;
             } else {
-              return (
-                <Label
-                  key={index}
-                  name={obj.user.name}
-                  questionid={props.question ? props.question[0] : ""}
-                  group={props.group}
-                ></Label>
-              );
+              if (!resultdata) {
+                return (
+                  <Label
+                    key={index}
+                    name={obj.user.name}
+                    questionid={props.question ? props.question[0] : ""}
+                    group={props.group}
+                    resultdata={resultdata}
+                    setResultdata={setResultdata}
+                  ></Label>
+                );
+              } else {
+                return (
+                  <LabelAnswered
+                    name={obj.user.name}
+                    likes={resultdata[obj.user.name].count}
+                    total_likes={resultdata["total"]}
+                  ></LabelAnswered>
+                );
+              }
             }
           })
         : ""}
-      <LabelAnswered></LabelAnswered>
     </View>
   );
 }

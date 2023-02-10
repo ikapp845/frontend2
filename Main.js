@@ -1,11 +1,12 @@
 import { View, StyleSheet, Text } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Second from "./Second";
+import Questonnaire from "./Sections/Questonnaire";
 
 export default function Main() {
   return (
     <View style={styles.main}>
-      <Second></Second>
+      <Questonnaire></Questonnaire>
     </View>
     // <NavigationContainer>
     //   <Stack.Navigator>

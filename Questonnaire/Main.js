@@ -15,7 +15,7 @@ export default function Main(props) {
   const [display, setDisplay] = useState([]);
   const [questions, setQuestions] = useState([]);
   const [questionnumber, setQuestionnumber] = useState(0);
-  const [answered, setAnswered] = useState(false);
+  const [answered, setAnswered] = useState(0);
   useEffect(() => {
     axios
       .get(uri + "group/group_members/" + props.selectedgroup + "/")
@@ -25,6 +25,14 @@ export default function Main(props) {
       })
       .catch((err) => {
         alert("Please check your internet connection");
+      });
+    axios
+      .get(uri + "group/group_question/" + props.selectedgroup + "/" + "raju")
+      .then((result) => {
+        setQuestions(result.data);
+      })
+      .catch((err) => {
+        alert;
       });
   }, [props.selectedgroup]);
   useEffect(() => {
@@ -39,35 +47,7 @@ export default function Main(props) {
       }
     }
   }, [search]);
-  useEffect(() => {
-    axios
-      .get(uri + "group/group_question/" + props.selectedgroup + "/" + "raju")
-      .then((result) => {
-        setQuestions(result.data);
-      })
-      .catch((err) => {
-        alert;
-      });
-  }, [props.selectedgroup]);
-  // useEffect(() => {
-  //   console.log(answered);
-  //   if (answered == true) {
-  //     axios
-  //       .get(
-  //         uri +
-  //           "like/like_count/" +
-  //           String(props.group) +
-  //           "/" +
-  //           props.question[0]
-  //       )
-  //       .then((result) => {
-  //         console.log(result.data);
-  //       })
-  //       .catch((err) => {
-  //         alert("Please check your internet connection");
-  //       });
-  //   }
-  // }, []);
+
   return (
     <View
       style={[
