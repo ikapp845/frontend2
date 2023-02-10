@@ -6,7 +6,7 @@ import Questonnaire from "./Sections/Questonnaire";
 export default function Main() {
   return (
     <View style={styles.main}>
-      <Questonnaire></Questonnaire>
+      <Second></Second>
     </View>
     // <NavigationContainer>
     //   <Stack.Navigator>

@@ -1,6 +1,5 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import First from "../Entry/First";
-import { NavigationContainer } from "@react-navigation/native";
 import Username from "../Entry/Username";
 import Gender from "../Entry/Gender";
 import Pic from "../Entry/Pic";

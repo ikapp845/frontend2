@@ -83,10 +83,7 @@ export default function Pic({ navigation }) {
               email: "de@gmail.com",
             })
             .then((result) => {
-              console.log(result.data);
-              if (result == "successfully created") {
-                console.log("Asds");
-              }
+              navigation.navigate("Group");
             });
         }}
       >
