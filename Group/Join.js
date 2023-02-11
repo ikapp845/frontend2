@@ -9,9 +9,12 @@ import BackgroundColour from "../Styles/Background";
 import { useState } from "react";
 import axios from "axios";
 import { uri } from "../Link";
+import { useContext } from "react";
+import { ProfileContext } from "../Second";
 
 export default function Join({ navigation }) {
   const [link, setLink] = useState("");
+  const [profile] = useContext(ProfileContext);
 
   return (
     <View style={BackgroundColour.back}>
@@ -39,11 +42,11 @@ export default function Join({ navigation }) {
           axios
             .post(uri + "group/join_group/", {
               group: link,
-              username: "sammy",
+              username: profile.name,
             })
             .then((result) => {
               if (result.data == "Success") {
-                console.log("Move to question");
+                navigation.navigate("Question");
               }
             })
             .catch((err) => {

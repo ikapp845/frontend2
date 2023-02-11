@@ -9,9 +9,12 @@ import BackgroundColour from "../Styles/Background";
 import { useState } from "react";
 import axios from "axios";
 import { uri } from "../Link";
+import { useContext } from "react";
+import { ProfileContext } from "../Second";
 
 export default function Create() {
   const [group, setGroup] = useState("");
+  const [profile] = useContext(ProfileContext);
 
   return (
     <View style={BackgroundColour.back}>
@@ -28,14 +31,15 @@ export default function Create() {
       ></TextInput>
       <TouchableOpacity
         onPress={() => {
+          console.log(profile.name);
           axios
             .post(uri + "group/create_group/", {
               name: group,
-              username: "sam",
+              username: profile.name,
             })
             .then((result) => {
               if (result.data == "Group created") {
-                console.log("Move to question here");
+                navigation.navigate("Question");
               }
             })
             .catch((err) => {

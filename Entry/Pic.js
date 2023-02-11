@@ -8,6 +8,7 @@ import { UserContext } from "../Sections/Entry";
 import * as ImagePicker from "expo-image-picker";
 import axios from "axios";
 import { uri } from "../Link";
+import { ProfileContext } from "../Second";
 
 export default function Pic({ navigation }) {
   const [state, setState] = useState(false);
@@ -15,6 +16,7 @@ export default function Pic({ navigation }) {
   const [username, setUsername] = useContext(UserContext);
   const [gender, setGender] = useContext(GenderContext);
   const [image, setImage] = useState(null);
+  const [profile, setProfile] = useContext(ProfileContext);
 
   const choosefromgallery = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -83,6 +85,7 @@ export default function Pic({ navigation }) {
               email: "de@gmail.com",
             })
             .then((result) => {
+              setProfile(result.data);
               navigation.navigate("Group");
             });
         }}
