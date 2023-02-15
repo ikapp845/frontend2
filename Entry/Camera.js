@@ -17,7 +17,6 @@ export default function Camera1({ route, navigation }) {
   const { image, setImage, setState } = route.params;
   const takePicture = async () => {
     const data = await camera.takePictureAsync(null);
-    console.log(data.uri);
     setState(true);
     setImage(data.uri);
     navigation.navigate("Pic");

@@ -12,7 +12,7 @@ import { uri } from "../Link";
 import { useContext } from "react";
 import { ProfileContext } from "../Second";
 
-export default function Create() {
+export default function Create({ navigation }) {
   const [group, setGroup] = useState("");
   const [profile] = useContext(ProfileContext);
 
@@ -31,20 +31,20 @@ export default function Create() {
       ></TextInput>
       <TouchableOpacity
         onPress={() => {
-          console.log(profile.name);
-          axios
-            .post(uri + "group/create_group/", {
-              name: group,
-              username: profile.name,
-            })
-            .then((result) => {
-              if (result.data == "Group created") {
-                navigation.navigate("Question");
-              }
-            })
-            .catch((err) => {
-              alert(err.data);
-            });
+          navigation.navigate("Question");
+          // axios
+          //   .post(uri + "group/create_group/", {
+          //     name: group,
+          //     username: profile.name,
+          //   })
+          //   .then((result) => {
+          //     if (result.data == "Group created") {
+          //       navigation.navigate("Question");
+          //     }
+          //   })
+          //   .catch((err) => {
+          //     alert(err.data);
+          //   });
         }}
         style={[styles.save, { backgroundColor: "#51f6cf", marginTop: 16 }]}
       >

@@ -93,7 +93,13 @@ export default function Main(props) {
       {timer ? (
         <Timer></Timer>
       ) : (
-        <View>
+        <View
+          style={{
+            width: "100%",
+            alignItems: "center",
+            height: "100%",
+          }}
+        >
           <Question
             group_members={display}
             question={questions[questionnumber]}

@@ -5,6 +5,7 @@ import Gender from "../Entry/Gender";
 import Pic from "../Entry/Pic";
 import { useState, createContext } from "react";
 import Camera1 from "../Entry/Camera";
+import OTP from "../Entry/OTP";
 
 const Stack = createStackNavigator();
 export const UserContext = createContext();
@@ -20,6 +21,11 @@ export default function Entry() {
           <Stack.Screen
             name="First"
             component={First}
+            options={{ headerShown: false }}
+          ></Stack.Screen>
+          <Stack.Screen
+            name="OTP"
+            component={OTP}
             options={{ headerShown: false }}
           ></Stack.Screen>
           <Stack.Screen
