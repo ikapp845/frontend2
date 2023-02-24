@@ -6,6 +6,8 @@ import Pic from "../Entry/Pic";
 import { useState, createContext } from "react";
 import Camera1 from "../Entry/Camera";
 import OTP from "../Entry/OTP";
+import Password from "../Entry/Password";
+import NewPassword from "../Entry/NewPassword";
 
 const Stack = createStackNavigator();
 export const UserContext = createContext();
@@ -26,6 +28,16 @@ export default function Entry() {
           <Stack.Screen
             name="OTP"
             component={OTP}
+            options={{ headerShown: false }}
+          ></Stack.Screen>
+          <Stack.Screen
+            name="New Password"
+            component={NewPassword}
+            options={{ headerShown: false }}
+          ></Stack.Screen>
+          <Stack.Screen
+            name="Password"
+            component={Password}
             options={{ headerShown: false }}
           ></Stack.Screen>
           <Stack.Screen

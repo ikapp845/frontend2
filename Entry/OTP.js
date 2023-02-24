@@ -8,12 +8,14 @@ import {
 import BackgroundColour from "../Styles/Background";
 import { useRef, useState, useEffect } from "react";
 
-export default function OTP() {
+export default function OTP({ navigation }) {
+  let otp_value = ["0", "0", "0", "0", "0", "0"];
   const ref_input2 = useRef();
   const ref_input3 = useRef();
   const ref_input4 = useRef();
   const ref_input5 = useRef();
   const ref_input6 = useRef();
+  const [usernameerror, setUsernameerror] = useState(false);
 
   return (
     <View style={BackgroundColour.back}>
@@ -27,7 +29,10 @@ export default function OTP() {
           keyboardType="number-pad"
           onChangeText={(e) => {
             if (e) {
+              otp_value[0] = e;
               ref_input2.current.focus();
+            } else {
+              otp_value[0] = "0";
             }
           }}
         />
@@ -37,7 +42,10 @@ export default function OTP() {
           keyboardType="number-pad"
           onChangeText={(e) => {
             if (e) {
+              otp_value[1] = e;
               ref_input3.current.focus();
+            } else {
+              otp_value[1] = "0";
             }
           }}
           ref={ref_input2}
@@ -48,7 +56,10 @@ export default function OTP() {
           keyboardType="number-pad"
           onChangeText={(e) => {
             if (e) {
+              otp_value[2] = e;
               ref_input4.current.focus();
+            } else {
+              otp_value[2] = "0";
             }
           }}
           ref={ref_input3}
@@ -59,7 +70,10 @@ export default function OTP() {
           keyboardType="number-pad"
           onChangeText={(e) => {
             if (e) {
+              otp_value[3] = e;
               ref_input5.current.focus();
+            } else {
+              otp_value[3] = "0";
             }
           }}
           ref={ref_input4}
@@ -70,7 +84,10 @@ export default function OTP() {
           keyboardType="number-pad"
           onChangeText={(e) => {
             if (e) {
+              otp_value[4] = e;
               ref_input6.current.focus();
+            } else {
+              otp_value[4] = "0";
             }
           }}
           ref={ref_input5}
@@ -79,11 +96,24 @@ export default function OTP() {
           style={styles.box}
           keyboardType="number-pad"
           ref={ref_input6}
+          onChangeText={(e) => {
+            if (e) {
+              otp_value[5] = e;
+            } else {
+              otp_value[5] = "0";
+            }
+          }}
         />
       </View>
+      <Text style={[usernameerror ? styles.errr : { display: "none" }]}>
+        *Invalid OTP
+      </Text>
       <TouchableOpacity
         style={[styles.instyle, styles.boxx]}
-        onPress={() => {}}
+        onPress={() => {
+          let otp = otp_value.join();
+          navigation.navigate("New Password");
+        }}
       >
         <View style={styles.signbox}>
           <Text style={styles.sign}>Continue</Text>
@@ -145,5 +175,9 @@ const styles = StyleSheet.create({
   instyle: {
     backgroundColor: "#51f6cf",
     marginTop: 20,
+  },
+  errr: {
+    paddingLeft: "12.5%",
+    color: "red",
   },
 });
