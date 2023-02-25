@@ -6,18 +6,18 @@ import {
   Pressable,
   TouchableOpacity,
 } from "react-native";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import BackgroundColour from "../Styles/Background";
 import { useContext, useEffect } from "react";
-import { UserContext } from "../Sections/Entry";
+import { UserContext, PasswordContext } from "../Sections/Entry";
 import { uri } from "../Link";
 import axios from "axios";
 
 export default function NewPassword({ navigation }) {
   const [state, setState] = useState(false);
-  const [password, setPassword] = useState();
   const [repassword, setRepassword] = useState();
   const [usernameerror, setUsernameerror] = useState(false);
+  const [password, setPassword] = useContext(PasswordContext);
 
   useEffect(() => {
     if (repassword === "") {

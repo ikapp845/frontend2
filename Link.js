@@ -1,1 +1,1 @@
-export const uri = "https://re-vgmk.onrender.com/";
+export const uri = "https://ikappp.onrender.com/";

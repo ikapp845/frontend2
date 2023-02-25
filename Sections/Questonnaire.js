@@ -22,6 +22,7 @@ export default function Questonnaire() {
       .get(uri + "group/user_groups/" + "raju")
       .then((result) => {
         setGroups({ result: result.data });
+        setSelectedgroup(result.data[0].group.id);
       })
       .catch((err) => {
         alert(

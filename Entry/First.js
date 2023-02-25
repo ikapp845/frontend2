@@ -6,22 +6,21 @@ import {
   TouchableOpacity,
 } from "react-native";
 import BackgroundColour from "../Styles/Background";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { uri } from "../Link";
-
+import { EmailContext } from "../Sections/Entry";
 export default function First({ navigation }) {
-  const [user, setUser] = useState("");
-  const [mail, setMail] = useState();
+  const [email, setEmail] = useContext(EmailContext);
   const [state, setState] = useState(false);
   const [usernameerror, setUsernameerror] = useState(false);
   useEffect(() => {
-    if (mail === "") {
+    if (email === "") {
       setState(false);
     } else {
       setState(true);
     }
-  }, [mail]);
+  }, [email]);
   return (
     <View style={BackgroundColour.back}>
       <View>
@@ -34,10 +33,10 @@ export default function First({ navigation }) {
           { marginTop: 68, backgroundColor: "white", paddingLeft: 20 },
         ]}
         placeholderTextColor={"rgba(0,0,0,0.2 )"}
-        value={mail}
+        value={email}
         onChangeText={(e) => {
-          setMail(e);
-          if (mail !== "") {
+          setEmail(e);
+          if (email !== "") {
             setState(true);
           }
         }}
@@ -49,15 +48,12 @@ export default function First({ navigation }) {
         style={[state ? styles.instyle : styles.outstyle, styles.box]}
         onPress={() => {
           axios
-            .post(uri + "user/check_username/", {
-              username: mail,
-            })
+            .get(uri + "user/check_username/" + email)
             .then((result) => {
-              console.log(result.data);
               if (result.data == "Success") {
                 navigation.navigate("OTP");
               } else {
-                setUsernameerror(true);
+                navigation.navigate("Password");
               }
             })
             .catch((err) => {

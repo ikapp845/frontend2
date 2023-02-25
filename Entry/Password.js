@@ -53,11 +53,20 @@ export default function Password({ navigation }) {
       <TouchableOpacity
         style={[state ? styles.instyle : styles.outstyle, styles.box]}
         onPress={() => {
-          if (password != repassword) {
-            setUsernameerror(true);
-          } else {
-            navigation.navigate("Username");
-          }
+          axios
+            .post(uri + "user/verify/", {
+              email: email,
+              password: password,
+            })
+            .then((result) => {
+              if (result.data == "Success") {
+                navigation.navigate("Question");
+              } else {
+                alert(
+                  "Please check whether the entered password is correct or ensure you have a proper internet connection"
+                );
+              }
+            });
         }}
       >
         <View style={styles.signbox}>

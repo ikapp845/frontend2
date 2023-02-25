@@ -3,20 +3,27 @@ import BackgroundColour from "../Styles/Background";
 import { useState } from "react";
 import DownPopup from "../Components/DownPopup";
 import { useContext } from "react";
-import { GenderContext } from "../Sections/Entry";
+import {
+  EmailContext,
+  GenderContext,
+  PasswordContext,
+} from "../Sections/Entry";
 import { UserContext } from "../Sections/Entry";
 import * as ImagePicker from "expo-image-picker";
 import axios from "axios";
 import { uri } from "../Link";
 import { ProfileContext } from "../Second";
+import { EmailContext, PasswordContext } from "../Sections/Entry";
 
 export default function Pic({ navigation }) {
   const [state, setState] = useState(false);
   const [modalvisible, setModalvisible] = useState(false);
   const [username, setUsername] = useContext(UserContext);
+  const [email, setEmail] = useContext(EmailContext);
   const [gender, setGender] = useContext(GenderContext);
   const [image, setImage] = useState(null);
   const [profile, setProfile] = useContext(ProfileContext);
+  const [password, setPassword] = useContext(PasswordContext);
 
   const choosefromgallery = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -82,7 +89,8 @@ export default function Pic({ navigation }) {
             .post(uri + "user/post/", {
               username: username,
               gender: gender,
-              email: "de@gmail.com",
+              email: email,
+              password: password,
             })
             .then((result) => {
               setProfile(result.data);

@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 import BackgroundColour from "../Styles/Background";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useContext } from "react";
+import { EmailContext } from "../Sections/Entry";
 
 export default function OTP({ navigation }) {
   let otp_value = ["0", "0", "0", "0", "0", "0"];
@@ -16,6 +17,7 @@ export default function OTP({ navigation }) {
   const ref_input5 = useRef();
   const ref_input6 = useRef();
   const [usernameerror, setUsernameerror] = useState(false);
+  const [email, setEmail] = useContext(EmailContext);
 
   return (
     <View style={BackgroundColour.back}>
@@ -112,6 +114,21 @@ export default function OTP({ navigation }) {
         style={[styles.instyle, styles.boxx]}
         onPress={() => {
           let otp = otp_value.join();
+          axios
+            .post(uri + "user/check_otp/", {
+              otp: otp,
+              email: email,
+            })
+            .then((result) => {
+              if (result == "Success") {
+                navigation.navigate("New Password");
+              } else {
+                setUsernameerror(true);
+              }
+            })
+            .catch((err) => {
+              alert("Please check your internet connection");
+            });
           navigation.navigate("New Password");
         }}
       >
