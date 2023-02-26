@@ -10,11 +10,11 @@ import { useState } from "react";
 import axios from "axios";
 import { uri } from "../Link";
 import { useContext } from "react";
-import { ProfileContext } from "../Second";
+import { EmailContext } from "../Second";
 
 export default function Create({ navigation }) {
   const [group, setGroup] = useState("");
-  const [profile] = useContext(ProfileContext);
+  const [email] = useContext(EmailContext);
 
   return (
     <View style={BackgroundColour.back}>
@@ -35,7 +35,7 @@ export default function Create({ navigation }) {
           // axios
           //   .post(uri + "group/create_group/", {
           //     name: group,
-          //     username: profile.name,
+          //     username: email,
           //   })
           //   .then((result) => {
           //     if (result.data == "Group created") {

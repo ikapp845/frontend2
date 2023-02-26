@@ -10,11 +10,11 @@ import { useState } from "react";
 import axios from "axios";
 import { uri } from "../Link";
 import { useContext } from "react";
-import { ProfileContext } from "../Second";
+import { EmailContext } from "../Second";
 
 export default function Join({ navigation }) {
   const [link, setLink] = useState("");
-  const [profile] = useContext(ProfileContext);
+  const [email] = useContext(EmailContext);
 
   return (
     <View style={BackgroundColour.back}>
@@ -42,7 +42,7 @@ export default function Join({ navigation }) {
           axios
             .post(uri + "group/join_group/", {
               group: link,
-              username: profile.name,
+              username: email,
             })
             .then((result) => {
               if (result.data == "Success") {

@@ -3,17 +3,12 @@ import BackgroundColour from "../Styles/Background";
 import { useState } from "react";
 import DownPopup from "../Components/DownPopup";
 import { useContext } from "react";
-import {
-  EmailContext,
-  GenderContext,
-  PasswordContext,
-} from "../Sections/Entry";
+import { GenderContext, PasswordContext } from "../Sections/Entry";
 import { UserContext } from "../Sections/Entry";
 import * as ImagePicker from "expo-image-picker";
 import axios from "axios";
 import { uri } from "../Link";
-import { ProfileContext } from "../Second";
-import { EmailContext, PasswordContext } from "../Sections/Entry";
+import { ProfileContext, EmailContext } from "../Second";
 
 export default function Pic({ navigation }) {
   const [state, setState] = useState(false);

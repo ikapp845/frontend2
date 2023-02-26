@@ -9,7 +9,8 @@ import BackgroundColour from "../Styles/Background";
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { uri } from "../Link";
-import { EmailContext } from "../Sections/Entry";
+import { EmailContext } from "../Second";
+
 export default function First({ navigation }) {
   const [email, setEmail] = useContext(EmailContext);
   const [state, setState] = useState(false);

@@ -52,21 +52,7 @@ export default function Username({ navigation }) {
       <TouchableOpacity
         style={[state ? styles.instyle : styles.outstyle, styles.box]}
         onPress={() => {
-          axios
-            .post(uri + "user/check_username/", {
-              username: username,
-            })
-            .then((result) => {
-              console.log(result.data);
-              if (result.data == "Success") {
-                navigation.navigate("Gender");
-              } else {
-                setUsernameerror(true);
-              }
-            })
-            .catch((err) => {
-              alert(err.data);
-            });
+          navigation.navigate("Gender");
         }}
       >
         <View style={styles.signbox}>

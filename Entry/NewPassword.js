@@ -6,9 +6,8 @@ import {
   Pressable,
   TouchableOpacity,
 } from "react-native";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import BackgroundColour from "../Styles/Background";
-import { useContext, useEffect } from "react";
 import { UserContext, PasswordContext } from "../Sections/Entry";
 import { uri } from "../Link";
 import axios from "axios";

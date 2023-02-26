@@ -7,7 +7,9 @@ import {
 } from "react-native";
 import BackgroundColour from "../Styles/Background";
 import { useRef, useState, useEffect, useContext } from "react";
-import { EmailContext } from "../Sections/Entry";
+import { EmailContext } from "../Second";
+import axios from "axios";
+import { uri } from "../Link";
 
 export default function OTP({ navigation }) {
   let otp_value = ["0", "0", "0", "0", "0", "0"];
