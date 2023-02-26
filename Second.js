@@ -1,19 +1,17 @@
-import { View, Text } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import Entry from "./Sections/Entry";
-import Gender from "./Entry/Gender";
 import Group from "./Sections/Group";
 import Questonnaire from "./Sections/Questonnaire";
 import { createContext, useState } from "react";
 
 const Stack = createStackNavigator();
-export const ProfileContext = createContext();
+export const EmailContext = createContext();
 
 export default function Aa() {
-  const [profile, setProfile] = useState();
+  const [email, setEmail] = useState();
   return (
-    <ProfileContext.Provider value={[profile, setProfile]}>
+    <EmailContext.Provider value={[email, setEmail]}>
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
@@ -33,6 +31,6 @@ export default function Aa() {
           ></Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
-    </ProfileContext.Provider>
+    </EmailContext.Provider>
   );
 }
