@@ -15,7 +15,7 @@ import { EmailContext } from "../Second";
 export default function Create({ navigation }) {
   const [group, setGroup] = useState("");
   const [email] = useContext(EmailContext);
-
+  console.log(email);
   return (
     <View style={BackgroundColour.back}>
       <View style={styles.headview}>
@@ -31,20 +31,20 @@ export default function Create({ navigation }) {
       ></TextInput>
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate("Question");
-          // axios
-          //   .post(uri + "group/create_group/", {
-          //     name: group,
-          //     username: email,
-          //   })
-          //   .then((result) => {
-          //     if (result.data == "Group created") {
-          //       navigation.navigate("Question");
-          //     }
-          //   })
-          //   .catch((err) => {
-          //     alert(err.data);
-          //   });
+          // navigation.navigate("Question");
+          axios
+            .post(uri + "group/create_group/", {
+              name: group,
+              username: email,
+            })
+            .then((result) => {
+              if (result.data == "Group created") {
+                navigation.navigate("Question");
+              }
+            })
+            .catch((err) => {
+              alert(err.data);
+            });
         }}
         style={[styles.save, { backgroundColor: "#51f6cf", marginTop: 16 }]}
       >

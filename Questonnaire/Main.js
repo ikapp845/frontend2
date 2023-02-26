@@ -4,11 +4,12 @@ import BackgroundColour from "../Styles/Background";
 import ProfilePic from "../Components/ProfilePic";
 import Question from "./Question";
 import UsernameSearch from "../Components/UsernameSearch";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { uri } from "../Link";
 import axios from "axios";
 import Timer from "./Timer";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import ProfileContext from "../Second";
 
 export default function Main(props) {
   const [group_members, setGroup_members] = useState();
@@ -17,6 +18,7 @@ export default function Main(props) {
   const [questions, setQuestions] = useState([]);
   const [questionnumber, setQuestionnumber] = useState(0);
   const [timer, setTimer] = useState(false);
+  const [profile] = useContext(ProfileContext);
   const [resultdata, setResultdata] = useState();
 
   useEffect(() => {
@@ -30,7 +32,9 @@ export default function Main(props) {
         alert("Please check your internet connection");
       });
     axios
-      .get(uri + "group/group_question/" + props.selectedgroup + "/" + "raju")
+      .get(
+        uri + "group/group_question/" + props.selectedgroup + "/" + profile.name
+      )
       .then((result) => {
         setQuestions(result.data);
       })

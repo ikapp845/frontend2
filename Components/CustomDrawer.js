@@ -14,9 +14,10 @@ import Vertical from "../Icon/Vertical";
 import Camera from "../Icon/Camera";
 import Like from "../Icon/Like";
 import Plus from "../Icon/Plus";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import DownPopup from "../Components/DownPopup";
 import Popup from "../Components/Popup";
+import { ProfileContext } from "../Second";
 
 export default function CustomDrawer(props) {
   const [modalvisiblegroup, setModalvisiblegroup] = useState(false);
@@ -26,6 +27,7 @@ export default function CustomDrawer(props) {
   const [head2, setHead2] = useState("");
   const [head3, setHead3] = useState("");
   const [currentgroup, setCurrentgroup] = useState();
+  const [profile] = useContext(ProfileContext);
 
   function share() {}
 
@@ -82,7 +84,7 @@ export default function CustomDrawer(props) {
           </View>
         </View>
         <View style={styles.nameview}>
-          <Text style={styles.name}>Mark Zuckerberg</Text>
+          <Text style={styles.name}>{profile.name}</Text>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <Like></Like>
             <Text style={{ color: "white", fontSize: 16 }}> 123</Text>

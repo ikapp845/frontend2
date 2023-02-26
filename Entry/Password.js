@@ -9,13 +9,15 @@ import {
 import { useState } from "react";
 import BackgroundColour from "../Styles/Background";
 import { useContext, useEffect } from "react";
-import { UserContext } from "../Sections/Entry";
 import { uri } from "../Link";
 import axios from "axios";
+import { EmailContext, ProfileContext } from "../Second";
 
 export default function Password({ navigation }) {
   const [state, setState] = useState(false);
   const [password, setPassword] = useState();
+  const [email] = useContext(EmailContext);
+  const [setProfile] = useContext(ProfileContext);
   const [usernameerror, setUsernameerror] = useState(false);
 
   useEffect(() => {
@@ -54,17 +56,17 @@ export default function Password({ navigation }) {
         style={[state ? styles.instyle : styles.outstyle, styles.box]}
         onPress={() => {
           axios
-            .post(uri + "user/verify/", {
-              email: email,
+            .post(uri + "user/verify/" + email, {
               password: password,
             })
             .then((result) => {
-              if (result.data == "Success") {
-                navigation.navigate("Question");
-              } else {
+              if (result.data == "Fail") {
                 alert(
                   "Please check whether the entered password is correct or ensure you have a proper internet connection"
                 );
+              } else {
+                setProfile(result.data);
+                navigation.navigate("Question");
               }
             });
         }}

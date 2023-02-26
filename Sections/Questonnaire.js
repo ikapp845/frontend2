@@ -2,16 +2,18 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 import Main from "../Questonnaire/Main";
 import CustomDrawer from "../Components/CustomDrawer";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { uri } from "../Link";
+import { ProfileContext } from "../Second";
 
 const Drawer = createDrawerNavigator();
 
 export default function Questonnaire() {
-  const [selectedgroup, setSelectedgroup] = useState("zsgs");
+  const [selectedgroup, setSelectedgroup] = useState("");
   const [groups, setGroups] = useState();
   const [stateful, setStateful] = useState(0);
+  const [profile] = useContext(ProfileContext);
   const a = { setStateful: setStateful, stateful: stateful };
   const b = {
     setSelectedgroup: setSelectedgroup,
@@ -19,7 +21,7 @@ export default function Questonnaire() {
   };
   useEffect(() => {
     axios
-      .get(uri + "group/user_groups/" + "raju")
+      .get(uri + "group/user_groups/" + profile.email)
       .then((result) => {
         setGroups({ result: result.data });
         setSelectedgroup(result.data[0].group.id);
