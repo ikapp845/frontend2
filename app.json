@@ -3,6 +3,10 @@
     "name": "frontend",
     "slug": "frontend",
     "version": "1.0.0",
-    "assetBundlePatterns": ["**/*"]
+    "assetBundlePatterns": ["**/*"],
+    "splash": {
+      "image": "./assets/logo.png",
+      "backgroundColor": "#b793d6"
+    }
   }
 }
