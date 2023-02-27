@@ -1,11 +1,18 @@
 {
   "expo": {
-    "name": "frontend",
-    "slug": "frontend",
+    "name": "ik",
+    "slug": "ik",
     "version": "1.0.0",
     "assetBundlePatterns": ["**/*"],
     "splash": {
       "image": "./assets/logo.png",
+      "backgroundColor": "#b793d6"
+    },
+    "icon": "./assets/icon.png"
+  },
+  "android": {
+    "adaptiveIcon": {
+      "foregroundImage": "./assets/icon.png",
       "backgroundColor": "#b793d6"
     }
   }
