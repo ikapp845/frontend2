@@ -10,11 +10,19 @@ import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { uri } from "../Link";
 import { EmailContext } from "../Second";
+import {
+  useFonts,
+  PaytoneOne_400Regular,
+} from "@expo-google-fonts/paytone-one";
 
 export default function First({ navigation }) {
+  let [fontsLoaded] = useFonts({
+    PaytoneOne_400Regular,
+  });
   const [email, setEmail] = useContext(EmailContext);
   const [state, setState] = useState(false);
   const [usernameerror, setUsernameerror] = useState(false);
+
   useEffect(() => {
     if (email === "") {
       setState(false);
@@ -22,10 +30,18 @@ export default function First({ navigation }) {
       setState(true);
     }
   }, [email]);
+  if (!fontsLoaded) {
+    return null;
+  }
   return (
     <View style={BackgroundColour.back}>
-      <View>
-        <Text>IK</Text>
+      <View
+        style={{
+          marginTop: 100,
+          marginBottom: 100,
+        }}
+      >
+        <Text style={styles.maintext}>ik</Text>
       </View>
       <TextInput
         placeholder="@email"
@@ -131,5 +147,11 @@ const styles = StyleSheet.create({
   errr: {
     paddingLeft: "12.5%",
     color: "red",
+  },
+  maintext: {
+    fontFamily: "PaytoneOne_400Regular",
+    fontSize: 100,
+    color: "white",
+    textAlign: "center",
   },
 });
