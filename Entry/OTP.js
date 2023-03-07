@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import BackgroundColour from "../Styles/Background";
 import { useRef, useState, useEffect, useContext } from "react";
-import { EmailContext } from "../Second";
+import { EmailContext, ProfileContext } from "../Second";
 import axios from "axios";
 import { uri } from "../Link";
 
@@ -20,6 +20,7 @@ export default function OTP({ navigation }) {
   const ref_input6 = useRef();
   const [usernameerror, setUsernameerror] = useState(false);
   const [email, setEmail] = useContext(EmailContext);
+  const [setProfile] = useContext(ProfileContext);
 
   return (
     <View style={BackgroundColour.back}>
@@ -122,10 +123,13 @@ export default function OTP({ navigation }) {
               email: email,
             })
             .then((result) => {
-              if (result == "Success") {
-                navigation.navigate("New Password");
-              } else {
+              if (result == "Fail") {
                 setUsernameerror(true);
+              } else if (result == "New") {
+                navigation.navigate("Username");
+              } else {
+                setProfile(result.data);
+                navigation.navigate("Question");
               }
             })
             .catch((err) => {

@@ -3,7 +3,7 @@ import BackgroundColour from "../Styles/Background";
 import { useState } from "react";
 import DownPopup from "../Components/DownPopup";
 import { useContext } from "react";
-import { GenderContext, PasswordContext } from "../Sections/Entry";
+import { GenderContext } from "../Sections/Entry";
 import { UserContext } from "../Sections/Entry";
 import * as ImagePicker from "expo-image-picker";
 import axios from "axios";
@@ -18,7 +18,6 @@ export default function Pic({ navigation }) {
   const [gender, setGender] = useContext(GenderContext);
   const [image, setImage] = useState(null);
   const [profile, setProfile] = useContext(ProfileContext);
-  const [password, setPassword] = useContext(PasswordContext);
 
   const choosefromgallery = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -80,12 +79,18 @@ export default function Pic({ navigation }) {
       <TouchableOpacity
         style={[styles.save, state ? { opacity: 1 } : { opacity: 0.5 }]}
         onPress={() => {
+          var photo = {
+            uri: image,
+            type: "image/jpeg",
+            name: `${username}.jpg`,
+          };
+
           axios
-            .post(uri + "user/post/", {
+            .post(uri + "user/data/", {
               username: username,
               gender: gender,
               email: email,
-              password: password,
+              image: photo,
             })
             .then((result) => {
               setProfile(result.data);

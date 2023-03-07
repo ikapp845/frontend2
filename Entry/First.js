@@ -9,7 +9,7 @@ import BackgroundColour from "../Styles/Background";
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { uri } from "../Link";
-import { EmailContext } from "../Second";
+import { EmailContext, ProfileContext } from "../Second";
 import {
   useFonts,
   PaytoneOne_400Regular,
@@ -22,6 +22,7 @@ export default function First({ navigation }) {
   const [email, setEmail] = useContext(EmailContext);
   const [state, setState] = useState(false);
   const [usernameerror, setUsernameerror] = useState(false);
+  const [setProfile] = useContext(ProfileContext);
 
   useEffect(() => {
     if (email === "") {
@@ -67,11 +68,7 @@ export default function First({ navigation }) {
           axios
             .get(uri + "user/check_username/" + email)
             .then((result) => {
-              if (result.data == "Success") {
-                navigation.navigate("OTP");
-              } else {
-                navigation.navigate("Password");
-              }
+              navigation.navigate("OTP");
             })
             .catch((err) => {
               alert(err.data);

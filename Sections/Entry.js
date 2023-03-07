@@ -34,16 +34,6 @@ export default function Entry() {
               options={{ headerShown: false }}
             ></Stack.Screen>
             <Stack.Screen
-              name="New Password"
-              component={NewPassword}
-              options={{ headerShown: false }}
-            ></Stack.Screen>
-            <Stack.Screen
-              name="Password"
-              component={Password}
-              options={{ headerShown: false }}
-            ></Stack.Screen>
-            <Stack.Screen
               name="Username"
               component={Username}
               options={{ headerShown: false }}
