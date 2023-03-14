@@ -31,7 +31,7 @@ export default function Timer() {
         Skip the weight by{" "}
       </Text>
       <TouchableOpacity style={styles.invite}>
-        <Text style={styles.invitetext}>Invite friends</Text>
+        <Text style={styles.invitetext}>Ask a Question</Text>
       </TouchableOpacity>
     </View>
   );

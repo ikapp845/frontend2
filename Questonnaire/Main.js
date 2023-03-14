@@ -10,6 +10,7 @@ import axios from "axios";
 import Timer from "./Timer";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import ProfileContext from "../Second";
+import AskQuestion from "./AskQuestion";
 
 export default function Main(props) {
   const [group_members, setGroup_members] = useState();
@@ -17,9 +18,31 @@ export default function Main(props) {
   const [display, setDisplay] = useState([]);
   const [questions, setQuestions] = useState([]);
   const [questionnumber, setQuestionnumber] = useState(0);
-  const [timer, setTimer] = useState(false);
-  const [profile] = useContext(ProfileContext);
+  const [timer, setTimer] = useState(1);
+  const { profile } = useContext(ProfileContext);
   const [resultdata, setResultdata] = useState();
+
+  function QuestionComp() {
+    return (
+      <View
+        style={{
+          width: "100%",
+          alignItems: "center",
+          height: "100%",
+        }}
+      >
+        <Question
+          group_members={display}
+          question={questions[questionnumber]}
+          group={props.selectedgroup}
+          resultdata={resultdata}
+          setResultdata={setResultdata}
+        ></Question>
+        <UsernameSearch serach={search} setSearch={setSearch}></UsernameSearch>
+      </View>
+    );
+  }
+  let comp = <QuestionComp></QuestionComp>;
 
   useEffect(() => {
     axios
@@ -42,6 +65,7 @@ export default function Main(props) {
         alert;
       });
   }, [props.selectedgroup]);
+
   useEffect(() => {
     if (search == "" || search == " ") {
       setDisplay(group_members);
@@ -55,6 +79,15 @@ export default function Main(props) {
     }
   }, [search]);
 
+  useEffect(() => {
+    if (timer == 0) {
+      comp = <Timer></Timer>;
+    } else if (timer == 1) {
+      comp = <QuestionComp></QuestionComp>;
+    } else {
+      comp = <AskQuestion></AskQuestion>;
+    }
+  }, [timer]);
   return (
     <View
       style={[
@@ -94,29 +127,7 @@ export default function Main(props) {
         )}
         <LikeButton></LikeButton>
       </View>
-      {timer ? (
-        <Timer></Timer>
-      ) : (
-        <View
-          style={{
-            width: "100%",
-            alignItems: "center",
-            height: "100%",
-          }}
-        >
-          <Question
-            group_members={display}
-            question={questions[questionnumber]}
-            group={props.selectedgroup}
-            resultdata={resultdata}
-            setResultdata={setResultdata}
-          ></Question>
-          <UsernameSearch
-            serach={search}
-            setSearch={setSearch}
-          ></UsernameSearch>
-        </View>
-      )}
+      {comp}
     </View>
   );
 }
