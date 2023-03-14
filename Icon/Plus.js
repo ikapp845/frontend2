@@ -4,19 +4,23 @@ import Svg, { G, Path } from "react-native-svg";
 const Plus = (props) => (
   <Svg
     xmlns="http://www.w3.org/2000/svg"
-    width={16}
-    height={16}
-    viewBox="40 171 16 16"
+    width={12}
+    height={12}
+    viewBox="290.5 176.5 12 12"
     {...props}
   >
-    <G data-name="Group 103" fill="#fff" fillRule="evenodd">
+    <G data-name="Path 41">
       <Path
-        d="M48 171a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-12a2 2 0 0 1 2-2z"
-        data-name="Rectangle 2444"
+        d="M297.857 182.143v-4.286a.857.857 0 1 0-1.714 0v4.286h-4.286a.857.857 0 1 0 0 1.714h4.286v4.286a.857.857 0 0 0 1.714 0v-4.286h4.286a.857.857 0 0 0 0-1.714h-4.286Z"
+        fill="#fff"
+        fillRule="evenodd"
       />
       <Path
-        d="M56 179a2 2 0 0 1-2 2H42a2 2 0 0 1-2-2 2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z"
-        data-name="Rectangle 2445"
+        d="M297.857 182.143v-4.286a.857.857 0 1 0-1.714 0v4.286h-4.286a.857.857 0 1 0 0 1.714h4.286v4.286a.857.857 0 0 0 1.714 0v-4.286h4.286a.857.857 0 0 0 0-1.714h-4.286Z"
+        strokeLinejoin="round"
+        strokeLinecap="round"
+        stroke="#fff"
+        fill="transparent"
       />
     </G>
   </Svg>
