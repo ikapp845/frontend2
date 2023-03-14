@@ -6,8 +6,6 @@ import Pic from "../Entry/Pic";
 import { useState, createContext } from "react";
 import Camera1 from "../Entry/Camera";
 import OTP from "../Entry/OTP";
-import Password from "../Entry/Password";
-import NewPassword from "../Entry/NewPassword";
 
 const Stack = createStackNavigator();
 export const UserContext = createContext();
