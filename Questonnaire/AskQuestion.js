@@ -7,6 +7,7 @@ import {
 } from "react-native";
 import BackgroundColour from "../Styles/Background";
 import { useState } from "react";
+import axios from "axios";
 
 export default function AskQuestion() {
   let ques;
@@ -29,6 +30,16 @@ export default function AskQuestion() {
           </Text>
         </View>
         <TouchableOpacity
+          // onPress={() => {
+          //   axios
+          //     .get("http://localhost:8000/s/")
+          //     .then((result) => {
+          //       console.log(result.data);
+          //     })
+          //     .catch((err) => {
+          //       console.log("ss" + err);
+          //     });
+          // }}
           style={{
             position: "absolute",
             bottom: 10,

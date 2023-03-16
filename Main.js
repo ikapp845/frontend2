@@ -6,7 +6,7 @@ import AskQuestion from "./Questonnaire/AskQuestion";
 export default function Main() {
   return (
     <View style={styles.main}>
-      <AskQuestion></AskQuestion>
+      <Second></Second>
     </View>
     // <NavigationContainer>
     //   <Stack.Navigator>

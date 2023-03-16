@@ -14,6 +14,7 @@ import {
   useFonts,
   PaytoneOne_400Regular,
 } from "@expo-google-fonts/paytone-one";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function First({ navigation }) {
   let [fontsLoaded] = useFonts({
@@ -22,7 +23,25 @@ export default function First({ navigation }) {
   const [email, setEmail] = useContext(EmailContext);
   const [state, setState] = useState(false);
   const [usernameerror, setUsernameerror] = useState(false);
-  const [setProfile] = useContext(ProfileContext);
+
+  const storedata = async () => {
+    try {
+      const value = await AsyncStorage.getItem("profile");
+      if (value !== null) {
+        navigation.navigate("Question");
+        // console.log(JSON.parse(value));
+        // navigation.navigate("Question");
+      } else {
+        console.log("as");
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    storedata();
+  }, []);
 
   useEffect(() => {
     if (email === "") {
@@ -31,6 +50,7 @@ export default function First({ navigation }) {
       setState(true);
     }
   }, [email]);
+
   if (!fontsLoaded) {
     return null;
   }
@@ -146,7 +166,7 @@ const styles = StyleSheet.create({
     color: "red",
   },
   maintext: {
-    fontFamily: "PaytoneOne_400Regular",
+    // fontFamily: "PaytoneOne_400Regular",
     fontSize: 100,
     color: "white",
     textAlign: "center",

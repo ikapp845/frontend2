@@ -10,6 +10,7 @@ import { useRef, useState, useEffect, useContext } from "react";
 import { EmailContext, ProfileContext } from "../Second";
 import axios from "axios";
 import { uri } from "../Link";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function OTP({ navigation }) {
   let otp_value = ["0", "0", "0", "0", "0", "0"];
@@ -22,6 +23,14 @@ export default function OTP({ navigation }) {
   const [email, setEmail] = useContext(EmailContext);
   const [setProfile] = useContext(ProfileContext);
 
+  const storedata = async (value) => {
+    try {
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem(profile, jsonValue);
+    } catch (e) {
+      console.log(e);
+    }
+  };
   return (
     <View style={BackgroundColour.back}>
       <View style={styles.headview}>
@@ -129,6 +138,7 @@ export default function OTP({ navigation }) {
                 navigation.navigate("Username");
               } else {
                 setProfile(result.data);
+                storedata(result.data);
                 navigation.navigate("Question");
               }
             })

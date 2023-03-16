@@ -9,7 +9,7 @@ import { uri } from "../Link";
 import axios from "axios";
 import Timer from "./Timer";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import ProfileContext from "../Second";
+import { ProfileContext } from "../Sections/Questonnaire";
 import AskQuestion from "./AskQuestion";
 
 export default function Main(props) {
@@ -19,7 +19,7 @@ export default function Main(props) {
   const [questions, setQuestions] = useState([]);
   const [questionnumber, setQuestionnumber] = useState(0);
   const [timer, setTimer] = useState(1);
-  const { profile } = useContext(ProfileContext);
+  const [profile] = useContext(ProfileContext);
   const [resultdata, setResultdata] = useState();
 
   function QuestionComp() {
