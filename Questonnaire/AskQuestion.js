@@ -60,8 +60,10 @@ export default function AskQuestion() {
           multiline={true}
           value={ques}
           onChangeText={(e) => {
-            ques = e;
-            setCount(ques.length);
+            if (ques.length < 60) {
+              ques = e;
+              setCount(ques.length);
+            }
           }}
         ></TextInput>
       </View>

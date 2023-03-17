@@ -10,43 +10,45 @@ import * as Contacts from "expo-contacts";
 import BackgroundColour from "../Styles/Background";
 import UserLabel from "./UserLabel";
 import RightArrow from "../Icon/RightArrow";
+import GetContact from "./GetContact";
 
 export default function Contact() {
+  const [contacts, setContacts] = useState();
+  const [phone, setPhone] = useState([]);
   useEffect(() => {
-    // Retrieve the list of contacts from the device
     (async () => {
       const { status } = await Contacts.requestPermissionsAsync();
       if (status === "granted") {
         const { data } = await Contacts.getContactsAsync();
         try {
           if (data.length > 0) {
-            for (let i = 0; i < data.length + 1; i++) {
-              let name = "";
-              let numbers = [];
-              if (data[i].lastName) {
-                name = data[i].firstName + " " + data[i].lastName;
-              } else {
-                name = data[i].firstName;
-              }
-              let numbers_count = data[i].phoneNumbers.length;
-              var number_set = new Set();
-              for (let j = 0; j < numbers_count; j++) {
-                var num = data[i].phoneNumbers[j].number;
-                if (num.charAt(0) == "+") {
-                  num = num.replace("+91", "");
-                  num = num.replace(/\s/g, "");
-                }
-                if (num.length <= 10) {
-                  if (number_set.has(num) == false && num != false) {
-                    number_set.add(num);
-                    numbers.push(num);
-                  }
-                }
-              }
-              if (numbers.length > 0) {
-                // console.log({ name: name, numbers: numbers });
-              }
-            }
+            let all = data.map(({ name, phoneNumbers }) => ({
+              name,
+              phoneNumbers,
+            }));
+            setContacts(all);
+            // for (let i = 0; i < data.length + 1; i++) {
+            //   let name = data[i].name;
+            //   let numbers = [];
+            //   let numbers_count = data[i].phoneNumbers.length;
+            //   var number_set = new Set();
+            //   for (let j = 0; j < numbers_count; j++) {
+            //     var num = data[i].phoneNumbers[j].number;
+            //     if (num.charAt(0) == "+") {
+            //       num = num.replace("+91", "");
+            //       num = num.replace(/\s/g, "");
+            //     }
+            //     if (num.length <= 10) {
+            //       if (number_set.has(num) == false && num != false) {
+            //         number_set.add(num);
+            //         numbers.push(num);
+            //       }
+            //     }
+            //   }
+            //   if (numbers.length > 0) {
+            //     console.log({ name: name, numbers: numbers });
+            //   }
+            // }
           }
         } catch {
           return;
