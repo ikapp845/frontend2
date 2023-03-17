@@ -10,7 +10,6 @@ import * as Contacts from "expo-contacts";
 import BackgroundColour from "../Styles/Background";
 import UserLabel from "./UserLabel";
 import RightArrow from "../Icon/RightArrow";
-import GetContact from "./GetContact";
 
 export default function Contact() {
   const [contacts, setContacts] = useState();
@@ -22,33 +21,28 @@ export default function Contact() {
         const { data } = await Contacts.getContactsAsync();
         try {
           if (data.length > 0) {
-            let all = data.map(({ name, phoneNumbers }) => ({
-              name,
-              phoneNumbers,
-            }));
-            setContacts(all);
-            // for (let i = 0; i < data.length + 1; i++) {
-            //   let name = data[i].name;
-            //   let numbers = [];
-            //   let numbers_count = data[i].phoneNumbers.length;
-            //   var number_set = new Set();
-            //   for (let j = 0; j < numbers_count; j++) {
-            //     var num = data[i].phoneNumbers[j].number;
-            //     if (num.charAt(0) == "+") {
-            //       num = num.replace("+91", "");
-            //       num = num.replace(/\s/g, "");
-            //     }
-            //     if (num.length <= 10) {
-            //       if (number_set.has(num) == false && num != false) {
-            //         number_set.add(num);
-            //         numbers.push(num);
-            //       }
-            //     }
-            //   }
-            //   if (numbers.length > 0) {
-            //     console.log({ name: name, numbers: numbers });
-            //   }
-            // }
+            // let all = data.map(({ name, phoneNumbers }) => ({
+            //   name,
+            //   phoneNumbers,
+            // }));
+            const modifiedArray = data.map((item) => {
+              const phoneNumbers = [
+                ...new Set(
+                  item.phoneNumbers.map((phoneNumber) =>
+                    phoneNumber.number
+                      .replace(/[\s+]/g, "")
+                      .replace("+91", "")
+                      .replace("91", "")
+                      .replace("0091", "")
+                  )
+                ),
+              ];
+              return {
+                name: item.name,
+                phoneNumbers: phoneNumbers,
+              };
+            });
+            setContacts(modifiedArray);
           }
         } catch {
           return;
