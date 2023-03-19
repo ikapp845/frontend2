@@ -2,9 +2,10 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 import Main from "../Questonnaire/Main";
 import CustomDrawer from "../Components/CustomDrawer";
-import { useEffect, useState, useContext, createContext } from "react";
+import { useEffect, useState, createContext } from "react";
 import axios from "axios";
 import { uri } from "../Link";
+
 // import { ProfileContext } from "../Second";
 
 const Drawer = createDrawerNavigator();
@@ -47,23 +48,25 @@ export default function Questonnaire() {
 
   return (
     <ProfileContext.Provider value={[profile, setProfile]}>
-      <Drawer.Navigator
-        drawerContent={(props) => (
-          <CustomDrawer {...props} {...groups} {...a} {...b} />
-        )}
-      >
-        <Drawer.Screen
-          name={"Main"}
-          options={{
-            drawerItemStyle: {
-              height: 0,
-            },
-            headerShown: false,
-          }}
+      <NavigationContainer>
+        <Drawer.Navigator
+          drawerContent={(props) => (
+            <CustomDrawer {...props} {...groups} {...a} {...b} />
+          )}
         >
-          {(props) => <Main {...props} {...b}></Main>}
-        </Drawer.Screen>
-      </Drawer.Navigator>
+          <Drawer.Screen
+            name={"Main"}
+            options={{
+              drawerItemStyle: {
+                height: 0,
+              },
+              headerShown: false,
+            }}
+          >
+            {(props) => <Main {...props} {...b}></Main>}
+          </Drawer.Screen>
+        </Drawer.Navigator>
+      </NavigationContainer>
     </ProfileContext.Provider>
   );
 }

@@ -6,7 +6,7 @@ import Likes from "./Likes";
 import LikeOpen from "./LikeOpen";
 import { useState } from "react";
 import Reveal from "../Supermode/Reveal";
-
+import GroupMembersIcon from "../Components/GroupMembersIcon";
 const Tab = createMaterialTopTabNavigator();
 
 export default function LikePage(props) {
@@ -56,9 +56,10 @@ export default function LikePage(props) {
             >
               <Down></Down>
             </TouchableOpacity>
-            <Text style={{ fontSize: 18, textAlign: "center", width: "88%" }}>
+            <Text style={{ fontSize: 18, textAlign: "center", width: "80%" }}>
               Likes
             </Text>
+            <GroupMembersIcon></GroupMembersIcon>
           </View>
           <Tab.Navigator
             screenOptions={{

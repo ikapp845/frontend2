@@ -3,11 +3,12 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Second from "./Second";
 import AskQuestion from "./Questonnaire/AskQuestion";
 import Contact from "./Contacts/Contact";
+import Questonnaire from "./Sections/Questonnaire";
 
 export default function Main() {
   return (
     <View style={styles.main}>
-      <Contact></Contact>
+      <Questonnaire></Questonnaire>
     </View>
     // <NavigationContainer>
     //   <Stack.Navigator>

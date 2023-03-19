@@ -50,6 +50,7 @@ export default function Contact() {
       }
     })();
   }, []);
+  console.log(JSON.stringify(contacts));
   return (
     <View
       style={[BackgroundColour.back, { alignItems: "center", widht: "100%" }]}
