@@ -7,7 +7,7 @@ export default function LabelAnswered(props) {
     percentage = "18%";
   } else {
     percentage =
-      String((Number(props.likes) * 100) / Number(props.total_likes)) + "%";
+      String((Number(props.likes) * 100) / Number(props.total_likes) + 5) + "%";
     if ((Number(props.likes) * 100) / Number(props.total_likes) <= 18) {
       percentage = "18%";
     }

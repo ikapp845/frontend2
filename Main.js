@@ -4,11 +4,12 @@ import Second from "./Second";
 import AskQuestion from "./Questonnaire/AskQuestion";
 import Contact from "./Contacts/Contact";
 import Questonnaire from "./Sections/Questonnaire";
+import Story from "./Likes/Story";
 
 export default function Main() {
   return (
     <View style={styles.main}>
-      <Questonnaire></Questonnaire>
+      <Story></Story>
     </View>
     // <NavigationContainer>
     //   <Stack.Navigator>
