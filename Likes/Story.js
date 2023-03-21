@@ -1,5 +1,12 @@
 import ViewShot from "react-native-view-shot";
-import { View, Text, Image, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  Linking,
+} from "react-native";
 import { useRef, useEffect, useState } from "react";
 import LabelAnswered from "../Components/LabelAnswered";
 
@@ -13,6 +20,20 @@ export default function Story(props) {
       setUrii(uri);
     });
   }, []);
+  const sharePhoto = (uri) => {
+    const encodedURL = encodeURIComponent(urii);
+    const instagramURL = `https://instagram.com://library?AssetPath=${encodedURL}`;
+    // Linking.openURL(instagramURL)
+
+    // Linking.canOpenURL(instagramURL).then(supported => {
+    // if (!supported) {
+    //   console.log('Can\'t handle url: ' + instagramURL);
+    // } else {
+    return Linking.openURL(instagramURL);
+
+    // }
+    // }).catch(err => console.error('An error occurred', err));
+  };
 
   return (
     <View>
@@ -41,6 +62,9 @@ export default function Story(props) {
         </View>
       </ViewShot>
       <Image source={{ uri: urii }} style={{ height: 200, width: 300 }}></Image>
+      <TouchableOpacity onPress={sharePhoto}>
+        <Text>aaa</Text>
+      </TouchableOpacity>
     </View>
   );
 }
