@@ -9,10 +9,16 @@ import BackgroundColour from "../Styles/Background";
 import { useState } from "react";
 import axios from "axios";
 import { uri } from "../Link";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { EmailContext } from "../Second";
 
 export default function Join({ navigation }) {
+  useEffect(() => {
+    navigation.reset({
+      index: 0,
+      routes: [{ name: "Group" }],
+    });
+  }, []);
   const [link, setLink] = useState("");
   const [email] = useContext(EmailContext);
 
@@ -24,10 +30,15 @@ export default function Join({ navigation }) {
       <TextInput
         style={[
           styles.save,
-          { backgroundColor: "white", paddingLeft: 52, marginTop: 45 },
+          {
+            backgroundColor: "white",
+            marginTop: 45,
+            fontSize: 25,
+            textAlign: "center",
+          },
         ]}
         value={link}
-        placeholder={"Paste Link"}
+        placeholder={"Paste Code"}
         onChangeText={(e) => {
           setLink(e);
         }}
