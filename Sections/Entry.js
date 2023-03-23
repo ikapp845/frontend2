@@ -13,7 +13,7 @@ export const GenderContext = createContext();
 export const PasswordContext = createContext();
 
 export default function Entry() {
-  const [username, setUsername] = useState("csad");
+  const [username, setUsername] = useState("");
   const [gender, setGender] = useState("");
   const [password, setPassword] = useState();
   return (

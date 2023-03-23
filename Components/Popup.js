@@ -1,6 +1,7 @@
 import { View, Modal, Text, StyleSheet, TouchableOpacity } from "react-native";
 import axios from "axios";
 import { uri } from "../Link";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Popup(props) {
   return (
@@ -34,6 +35,8 @@ export default function Popup(props) {
                   alert(err.data);
                 });
             } else {
+              AsyncStorage.removeItem("profile");
+              props.setModalvisible(false);
             }
           }}
         >

@@ -40,6 +40,7 @@ export default function Pic({ navigation }) {
       image: image,
       setImage: setImage,
       setState: setState,
+      modal: setModalvisible,
     });
   }
   return (
@@ -61,6 +62,7 @@ export default function Pic({ navigation }) {
         <TouchableOpacity
           style={[styles.save]}
           onPress={() => {
+            setImage(false);
             setModalvisible(true);
           }}
         >
@@ -72,7 +74,9 @@ export default function Pic({ navigation }) {
               }}
             />
           ) : (
-            <View style={[styles.picture, { backgroundColor: "blue" }]}></View>
+            <View
+              style={[styles.picture, { backgroundColor: "#F3DBFA" }]}
+            ></View>
           )}
           <Text>Upload a profile picture</Text>
         </TouchableOpacity>
@@ -80,24 +84,38 @@ export default function Pic({ navigation }) {
       <TouchableOpacity
         style={[styles.save, state ? { opacity: 1 } : { opacity: 0.5 }]}
         onPress={() => {
+          const formData = new FormData();
           var photo = {
             uri: image,
             type: "image/jpeg",
             name: `${username}.jpg`,
           };
-
-          axios
-            .post(uri + "user/data/", {
-              username: username,
-              gender: gender,
-              email: email,
-              image: photo,
-            })
-            .then((result) => {
-              setProfile(result.data);
-              navigation.navigate("Group");
-            });
+          formData.append("image", photo);
+          formData.append("username", username);
+          formData.append("gender", gender);
+          formData.append("email", email);
+          axios.post(uri + "user/post/", formData).then((result) => {
+            navigation.navigate("Group");
+          });
         }}
+        // const formData = new FormData();
+        // formData.append("image", {
+        //   uri: uri,
+        //   name: "image.jpg",
+        //   type: "image/jpg",
+        // });
+        // formData.append("username", username);
+        // formData.append("email", email);
+        // formData.append("gender", gender);
+
+        // const response = await fetch(uri + "user/post/", {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "multipart/form-data",
+        //   },
+        //   body: formData,
+        // });
+        // console.log(response);
       >
         <Text>Save</Text>
       </TouchableOpacity>

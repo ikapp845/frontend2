@@ -29,8 +29,6 @@ export default function First({ navigation }) {
       const value = await AsyncStorage.getItem("profile");
       if (value !== null) {
         navigation.navigate("Question");
-        // console.log(JSON.parse(value));
-        // navigation.navigate("Question");
       } else {
         console.log("as");
       }
@@ -64,21 +62,37 @@ export default function First({ navigation }) {
       >
         <Text style={styles.maintext}>ik</Text>
       </View>
-      <TextInput
-        placeholder="@email"
+      <View></View>
+      <View
         style={[
           styles.box,
-          { marginTop: 68, backgroundColor: "white", paddingLeft: 20 },
+          {
+            backgroundColor: "white",
+            borderRadius: 50,
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "flex-start",
+            marginTop: 68,
+          },
         ]}
-        placeholderTextColor={"rgba(0,0,0,0.2 )"}
-        value={email}
-        onChangeText={(e) => {
-          setEmail(e);
-          if (email !== "") {
-            setState(true);
-          }
-        }}
-      ></TextInput>
+      >
+        <Text style={{ marginRight: 10 }}>+91</Text>
+        <TextInput
+          placeholder="@phonenumber"
+          // style={[
+          //   styles.box,
+          //   { marginTop: 68, backgroundColor: "white", paddingLeft: 20 },
+          // ]}
+          placeholderTextColor={"rgba(0,0,0,0.2 )"}
+          value={email}
+          onChangeText={(e) => {
+            setEmail(e);
+            if (email !== "") {
+              setState(true);
+            }
+          }}
+        ></TextInput>
+      </View>
       <Text style={[usernameerror ? styles.errr : { display: "none" }]}>
         *The username is already taken
       </Text>

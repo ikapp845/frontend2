@@ -1,5 +1,5 @@
 import { Camera, CameraType } from "expo-camera";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Button,
   StyleSheet,
@@ -7,14 +7,27 @@ import {
   TouchableOpacity,
   View,
   Image,
+  BackHandler,
 } from "react-native";
 
 export default function Camera1({ route, navigation }) {
   const [type, setType] = useState(CameraType.back);
   const [permission, requestPermission] = Camera.useCameraPermissions();
   const [camera, setCamera] = useState(null);
+  const { image, setImage, setState, modal } = route.params;
+  useEffect(() => {
+    const backAction = () => {
+      modal(false);
+    };
 
-  const { image, setImage, setState } = route.params;
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+
+    return () => backHandler.remove();
+  }, []);
+
   const takePicture = async () => {
     const data = await camera.takePictureAsync(null);
     setState(true);

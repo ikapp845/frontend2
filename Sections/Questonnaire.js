@@ -48,25 +48,23 @@ export default function Questonnaire() {
 
   return (
     <ProfileContext.Provider value={[profile, setProfile]}>
-      <NavigationContainer>
-        <Drawer.Navigator
-          drawerContent={(props) => (
-            <CustomDrawer {...props} {...groups} {...a} {...b} />
-          )}
+      <Drawer.Navigator
+        drawerContent={(props) => (
+          <CustomDrawer {...props} {...groups} {...a} {...b} />
+        )}
+      >
+        <Drawer.Screen
+          name={"Main"}
+          options={{
+            drawerItemStyle: {
+              height: 0,
+            },
+            headerShown: false,
+          }}
         >
-          <Drawer.Screen
-            name={"Main"}
-            options={{
-              drawerItemStyle: {
-                height: 0,
-              },
-              headerShown: false,
-            }}
-          >
-            {(props) => <Main {...props} {...b}></Main>}
-          </Drawer.Screen>
-        </Drawer.Navigator>
-      </NavigationContainer>
+          {(props) => <Main {...props} {...b}></Main>}
+        </Drawer.Screen>
+      </Drawer.Navigator>
     </ProfileContext.Provider>
   );
 }

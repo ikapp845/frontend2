@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import BackgroundColour from "../Styles/Background";
 import { useRef, useState, useEffect, useContext } from "react";
-import { EmailContext, ProfileContext } from "../Second";
+import { EmailContext } from "../Second";
 import axios from "axios";
 import { uri } from "../Link";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -21,7 +21,6 @@ export default function OTP({ navigation }) {
   const ref_input6 = useRef();
   const [usernameerror, setUsernameerror] = useState(false);
   const [email, setEmail] = useContext(EmailContext);
-  const [setProfile] = useContext(ProfileContext);
 
   const storedata = async (value) => {
     try {
@@ -125,19 +124,16 @@ export default function OTP({ navigation }) {
       <TouchableOpacity
         style={[styles.instyle, styles.boxx]}
         onPress={() => {
-          let otp = otp_value.join();
+          let otp = otp_value.join().replaceAll(",", "");
           axios
-            .post(uri + "user/check_otp/", {
-              otp: otp,
-              email: email,
-            })
+            .get(uri + `user/check_otp/${email}/${otp}/`)
             .then((result) => {
-              if (result == "Fail") {
+              console.log(result.data);
+              if (result.data == "Fail") {
                 setUsernameerror(true);
-              } else if (result == "New") {
+              } else if (result.data == "New") {
                 navigation.navigate("Username");
               } else {
-                setProfile(result.data);
                 storedata(result.data);
                 navigation.navigate("Question");
               }
@@ -145,7 +141,6 @@ export default function OTP({ navigation }) {
             .catch((err) => {
               alert("Please check your internet connection");
             });
-          navigation.navigate("New Password");
         }}
       >
         <View style={styles.signbox}>

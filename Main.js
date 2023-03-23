@@ -5,12 +5,11 @@ import AskQuestion from "./Questonnaire/AskQuestion";
 import Contact from "./Contacts/Contact";
 import Questonnaire from "./Sections/Questonnaire";
 import Story from "./Likes/Story";
-import RegisterForPushNotificationsAsync from "./notifications/ExpoNotifications";
 
 export default function Main() {
   return (
     <View style={styles.main}>
-      <RegisterForPushNotificationsAsync></RegisterForPushNotificationsAsync>
+      <Second></Second>
     </View>
     // <NavigationContainer>
     //   <Stack.Navigator>
