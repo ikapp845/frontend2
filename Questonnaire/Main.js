@@ -18,10 +18,9 @@ export default function Main(props) {
   const [display, setDisplay] = useState([]);
   const [questions, setQuestions] = useState([]);
   const [questionnumber, setQuestionnumber] = useState(0);
-  const [timer, setTimer] = useState(1);
+  const [timer, setTimer] = useState(false);
   const [profile] = useContext(ProfileContext);
   const [resultdata, setResultdata] = useState();
-
   function QuestionComp() {
     return (
       <View
@@ -37,12 +36,12 @@ export default function Main(props) {
           group={props.selectedgroup}
           resultdata={resultdata}
           setResultdata={setResultdata}
+          image={profile ? profile.image : ""}
         ></Question>
         <UsernameSearch serach={search} setSearch={setSearch}></UsernameSearch>
       </View>
     );
   }
-  let comp = <QuestionComp></QuestionComp>;
 
   useEffect(() => {
     axios
@@ -56,7 +55,7 @@ export default function Main(props) {
       });
     axios
       .get(
-        uri + "group/group_question/" + props.selectedgroup + "/" + profile.name
+        uri + "group/group_question/" + props.selectedgroup + "/" + props.name
       )
       .then((result) => {
         setQuestions(result.data);
@@ -79,15 +78,6 @@ export default function Main(props) {
     }
   }, [search]);
 
-  useEffect(() => {
-    if (timer == 0) {
-      comp = <Timer></Timer>;
-    } else if (timer == 1) {
-      comp = <QuestionComp></QuestionComp>;
-    } else {
-      comp = <AskQuestion></AskQuestion>;
-    }
-  }, [timer]);
   return (
     <View
       style={[
@@ -127,7 +117,7 @@ export default function Main(props) {
         )}
         <LikeButton></LikeButton>
       </View>
-      {comp}
+      {timer ? <Timer></Timer> : <QuestionComp></QuestionComp>}
     </View>
   );
 }

@@ -1,10 +1,4 @@
-import {
-  View,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  Pressable,
-} from "react-native";
+import { View, StyleSheet, Text, TouchableOpacity, Image } from "react-native";
 import {
   DrawerContentScrollView,
   DrawerItemList,
@@ -17,7 +11,6 @@ import Plus from "../Icon/Plus";
 import { useState, useContext } from "react";
 import DownPopup from "../Components/DownPopup";
 import Popup from "../Components/Popup";
-import { ProfileContext } from "../Sections/Questonnaire";
 
 export default function CustomDrawer(props) {
   const [modalvisiblegroup, setModalvisiblegroup] = useState(false);
@@ -27,8 +20,6 @@ export default function CustomDrawer(props) {
   const [head2, setHead2] = useState("");
   const [head3, setHead3] = useState("");
   const [currentgroup, setCurrentgroup] = useState();
-  const [profile] = useContext(ProfileContext);
-
   function share() {}
 
   function leavegroup() {
@@ -79,24 +70,29 @@ export default function CustomDrawer(props) {
       ></Popup>
       <View style={styles.top}>
         <View style={styles.profilepic}>
+          <Image
+            source={{ uri: props.image }}
+            style={{ width: "100%", height: "100%", borderRadius: 50 }}
+          />
           <View style={styles.camera}>
             <Camera></Camera>
           </View>
         </View>
         <View style={styles.nameview}>
-          <Text style={styles.name}>{profile.name}</Text>
+          <Text style={styles.name}>{props.name}</Text>
           <View style={{ flexDirection: "row", alignItems: "center" }}>
             <Like></Like>
             <Text style={{ color: "white", fontSize: 16 }}> 123</Text>
           </View>
         </View>
-        <Pressable
+        <TouchableOpacity
           onPress={() => {
             setModalvisiblemain(true);
           }}
+          style={{ padding: 20 }}
         >
           <Vertical></Vertical>
-        </Pressable>
+        </TouchableOpacity>
       </View>
       <TouchableOpacity
         style={styles.create}
@@ -112,7 +108,7 @@ export default function CustomDrawer(props) {
         ? props.result.map((obj) => (
             <View key={obj.group.id} style={styles.create}>
               <TouchableOpacity
-                style={{ width: "90%" }}
+                style={{ width: "80%" }}
                 onPress={() => {
                   props.setSelectedgroup(obj.group.id);
                   props.navigation.closeDrawer();
@@ -122,14 +118,15 @@ export default function CustomDrawer(props) {
                   {obj.group.name}
                 </Text>
               </TouchableOpacity>
-              <Pressable
+              <TouchableOpacity
                 onPress={() => {
                   setModalvisiblegroup(true);
                   setCurrentgroup(obj.group.id);
                 }}
+                style={{ padding: 20 }}
               >
                 <Vertical></Vertical>
-              </Pressable>
+              </TouchableOpacity>
             </View>
           ))
         : ""}
@@ -143,10 +140,9 @@ export default function CustomDrawer(props) {
 
 const styles = StyleSheet.create({
   profilepic: {
-    height: 60,
-    width: 60,
+    height: 70,
+    width: 70,
     borderRadius: 100,
-    backgroundColor: "#fbe2e2",
     position: "relative",
     marginLeft: 16,
   },
@@ -164,6 +160,7 @@ const styles = StyleSheet.create({
   nameview: {
     marginLeft: 16,
     marginRight: 30,
+    width: "35%",
   },
   name: {
     fontSize: 18,

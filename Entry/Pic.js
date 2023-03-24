@@ -10,6 +10,7 @@ import axios from "axios";
 import { uri } from "../Link";
 // import { ProfileContext, EmailContext } from "../Second";
 import { EmailContext } from "../Second";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Pic({ navigation }) {
   const [state, setState] = useState(false);
@@ -19,7 +20,14 @@ export default function Pic({ navigation }) {
   const [gender, setGender] = useContext(GenderContext);
   const [image, setImage] = useState(null);
   // const [profile, setProfile] = useContext(ProfileContext);
-
+  const storedata = async (value) => {
+    try {
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem(profile, jsonValue);
+    } catch (e) {
+      console.log(e);
+    }
+  };
   const choosefromgallery = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -95,6 +103,7 @@ export default function Pic({ navigation }) {
           formData.append("gender", gender);
           formData.append("email", email);
           axios.post(uri + "user/post/", formData).then((result) => {
+            storedata(result.data);
             navigation.navigate("Group");
           });
         }}

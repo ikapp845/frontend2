@@ -1,4 +1,4 @@
-import { TouchableOpacity, StyleSheet } from "react-native";
+import { TouchableOpacity, StyleSheet, Image } from "react-native";
 
 export default function ProfilePic(props) {
   return (
@@ -7,7 +7,12 @@ export default function ProfilePic(props) {
       onPress={() => {
         props.navigation.openDrawer();
       }}
-    ></TouchableOpacity>
+    >
+      <Image
+        source={{ uri: props.image }}
+        style={{ width: "100%", height: "100%" }}
+      />
+    </TouchableOpacity>
   );
 }
 

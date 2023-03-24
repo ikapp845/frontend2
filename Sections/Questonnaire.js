@@ -11,37 +11,34 @@ import { uri } from "../Link";
 const Drawer = createDrawerNavigator();
 export const ProfileContext = createContext();
 
-export default function Questonnaire() {
+export default function Questonnaire({ route }) {
   const [selectedgroup, setSelectedgroup] = useState("");
   const [groups, setGroups] = useState();
   const [stateful, setStateful] = useState(0);
-  // const [profile] = useContext(ProfileContext);
-  const [profile, setProfile] = useState({
-    email: "9562267229",
-    gender: "Boy",
-    id: "e848bd73-7468-451a-818a-5e513191731f",
-    image_url: null,
-    last_login: "2023-03-16T20:26:29+05:30",
-    name: "Delvin Saji",
-    otp: "391480",
-    paid: "False",
-    paid_time: null,
-  });
+  const [profile, setProfile] = useState();
+  const { pr } = route.params;
+  const data = JSON.parse(pr);
   const a = { setStateful: setStateful, stateful: stateful };
   const b = {
     setSelectedgroup: setSelectedgroup,
     selectedgroup: selectedgroup,
+    name: data.name,
+    image: data["image_url"],
   };
   useEffect(() => {
+    setProfile(pr);
+  }, []);
+
+  useEffect(() => {
     axios
-      .get(uri + "group/user_groups/" + profile.email)
+      .get(uri + "group/user_groups/" + data.email)
       .then((result) => {
         setGroups({ result: result.data });
         setSelectedgroup(result.data[0].group.id);
       })
       .catch((err) => {
         alert(
-          "Not able to connect to backend server. Please try to check your internet connection"
+          "Not able to connect to backend server to get the Group data. Please try to check your internet connection"
         );
       });
   }, [stateful]);

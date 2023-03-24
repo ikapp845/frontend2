@@ -15,7 +15,11 @@ export default function LabelAnswered(props) {
   return (
     <View style={styles.label1}>
       <View style={[styles.label, { width: percentage }]}>
-        <ProfilePic val={32} navigation={() => {}}></ProfilePic>
+        <ProfilePic
+          val={32}
+          image={props.image}
+          navigation={() => {}}
+        ></ProfilePic>
         <Text style={styles.name}>{props.name}</Text>
       </View>
     </View>

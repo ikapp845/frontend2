@@ -40,7 +40,11 @@ export default function Label(props) {
           });
       }}
     >
-      <ProfilePic val={32} navigation={() => {}}></ProfilePic>
+      <ProfilePic
+        val={32}
+        image={props.image}
+        navigation={() => {}}
+      ></ProfilePic>
       <Text style={styles.name}>{props.name}</Text>
     </TouchableOpacity>
   );

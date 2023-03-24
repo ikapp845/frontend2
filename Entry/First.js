@@ -28,7 +28,8 @@ export default function First({ navigation }) {
     try {
       const value = await AsyncStorage.getItem("profile");
       if (value !== null) {
-        navigation.navigate("Question");
+        const pr = value;
+        navigation.navigate("Question", { pr });
       } else {
         console.log("as");
       }

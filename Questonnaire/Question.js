@@ -26,6 +26,7 @@ export default function Question(props) {
                     group={props.group}
                     resultdata={props.resultdata}
                     setResultdata={props.setResultdata}
+                    image={props.image}
                   ></Label>
                 );
               } else {
@@ -35,6 +36,7 @@ export default function Question(props) {
                     name={obj.user.name}
                     likes={props.resultdata[obj.user.name].count}
                     total_likes={props.resultdata["total"]}
+                    image={props.image}
                   ></LabelAnswered>
                 );
               }

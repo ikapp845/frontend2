@@ -20,12 +20,12 @@ export default function OTP({ navigation }) {
   const ref_input5 = useRef();
   const ref_input6 = useRef();
   const [usernameerror, setUsernameerror] = useState(false);
-  const [email, setEmail] = useContext(EmailContext);
+  const [email] = useContext(EmailContext);
 
   const storedata = async (value) => {
     try {
       const jsonValue = JSON.stringify(value);
-      await AsyncStorage.setItem(profile, jsonValue);
+      await AsyncStorage.setItem("profile", jsonValue);
     } catch (e) {
       console.log(e);
     }
@@ -135,7 +135,8 @@ export default function OTP({ navigation }) {
                 navigation.navigate("Username");
               } else {
                 storedata(result.data);
-                navigation.navigate("Question");
+                const pr = result.data;
+                navigation.navigate("Question", { pr });
               }
             })
             .catch((err) => {
