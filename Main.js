@@ -2,14 +2,14 @@ import { View, StyleSheet, Text } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Second from "./Second";
 import AskQuestion from "./Questonnaire/AskQuestion";
-import Contact from "./Contacts/Contact";
 import Questonnaire from "./Sections/Questonnaire";
 import Story from "./Likes/Story";
+import Contact from "./Group/Contact";
 
 export default function Main() {
   return (
     <View style={styles.main}>
-      <Second></Second>
+      <Contact></Contact>
     </View>
     // <NavigationContainer>
     //   <Stack.Navigator>

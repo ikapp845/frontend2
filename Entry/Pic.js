@@ -18,12 +18,12 @@ export default function Pic({ navigation }) {
   const [username, setUsername] = useContext(UserContext);
   const [email, setEmail] = useContext(EmailContext);
   const [gender, setGender] = useContext(GenderContext);
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState();
   // const [profile, setProfile] = useContext(ProfileContext);
   const storedata = async (value) => {
     try {
       const jsonValue = JSON.stringify(value);
-      await AsyncStorage.setItem(profile, jsonValue);
+      await AsyncStorage.setItem("profile", jsonValue);
     } catch (e) {
       console.log(e);
     }
@@ -36,8 +36,7 @@ export default function Pic({ navigation }) {
       quality: 1,
     });
 
-    console.log(result);
-    if (!result.cancelled) {
+    if (!result.uri) {
       setImage(result.uri);
       setState(true);
     }
@@ -45,10 +44,10 @@ export default function Pic({ navigation }) {
 
   function takephoto() {
     navigation.navigate("Camera", {
-      image: image,
-      setImage: setImage,
-      setState: setState,
-      modal: setModalvisible,
+      image,
+      setImage,
+      setState,
+      setModalvisible,
     });
   }
   return (
@@ -102,29 +101,16 @@ export default function Pic({ navigation }) {
           formData.append("username", username);
           formData.append("gender", gender);
           formData.append("email", email);
-          axios.post(uri + "user/post/", formData).then((result) => {
-            storedata(result.data);
-            navigation.navigate("Group");
-          });
+          (async () => {
+            try {
+              const response = await axios.post(uri + "user/post/", formData);
+              storedata(response.data);
+              navigation.navigate("Group");
+            } catch (error) {
+              console.error(error);
+            }
+          })();
         }}
-        // const formData = new FormData();
-        // formData.append("image", {
-        //   uri: uri,
-        //   name: "image.jpg",
-        //   type: "image/jpg",
-        // });
-        // formData.append("username", username);
-        // formData.append("email", email);
-        // formData.append("gender", gender);
-
-        // const response = await fetch(uri + "user/post/", {
-        //   method: "POST",
-        //   headers: {
-        //     "Content-Type": "multipart/form-data",
-        //   },
-        //   body: formData,
-        // });
-        // console.log(response);
       >
         <Text>Save</Text>
       </TouchableOpacity>

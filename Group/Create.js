@@ -15,7 +15,7 @@ import { EmailContext } from "../Second";
 export default function Create({ navigation }) {
   const [group, setGroup] = useState("");
   const [email] = useContext(EmailContext);
-  console.log(email);
+
   return (
     <View style={BackgroundColour.back}>
       <View style={styles.headview}>
@@ -39,7 +39,7 @@ export default function Create({ navigation }) {
             })
             .then((result) => {
               if (result.data == "Group created") {
-                navigation.navigate("Question");
+                navigation.navigate("Contact");
               }
             })
             .catch((err) => {

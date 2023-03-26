@@ -14,10 +14,10 @@ export default function Camera1({ route, navigation }) {
   const [type, setType] = useState(CameraType.back);
   const [permission, requestPermission] = Camera.useCameraPermissions();
   const [camera, setCamera] = useState(null);
-  const { image, setImage, setState, modal } = route.params;
+  const { image, setImage, setState, setModalvisible } = route.params;
   useEffect(() => {
     const backAction = () => {
-      modal(false);
+      setModalvisible(false);
     };
 
     const backHandler = BackHandler.addEventListener(
@@ -32,7 +32,8 @@ export default function Camera1({ route, navigation }) {
     const data = await camera.takePictureAsync(null);
     setState(true);
     setImage(data.uri);
-    navigation.navigate("Pic");
+    setModalvisible(false);
+    navigation.goBack();
   };
 
   const retakepicture = async () => {

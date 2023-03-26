@@ -13,12 +13,6 @@ import { useContext, useEffect } from "react";
 import { EmailContext } from "../Second";
 
 export default function Join({ navigation }) {
-  useEffect(() => {
-    navigation.reset({
-      index: 0,
-      routes: [{ name: "Group" }],
-    });
-  }, []);
   const [link, setLink] = useState("");
   const [email] = useContext(EmailContext);
 

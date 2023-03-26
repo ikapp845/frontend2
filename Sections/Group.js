@@ -2,6 +2,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import Join from "../Group/Join";
 import Create from "../Group/Create";
+import Contact from "../Group/Contact";
 
 const Stack = createStackNavigator();
 
@@ -17,6 +18,11 @@ export default function Group() {
       <Stack.Screen
         name="Create"
         component={Create}
+        options={{ headerShown: false }}
+      ></Stack.Screen>
+      <Stack.Screen
+        name="Contact"
+        component={Contact}
         options={{ headerShown: false }}
       ></Stack.Screen>
     </Stack.Navigator>
