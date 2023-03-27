@@ -17,7 +17,7 @@ export default function Questonnaire({ route }) {
   const [stateful, setStateful] = useState(0);
   const [profile, setProfile] = useState();
   const { pr } = route.params;
-  const data = JSON.parse(pr);
+
   const a = { setStateful: setStateful, stateful: stateful };
   const b = {
     setSelectedgroup: setSelectedgroup,

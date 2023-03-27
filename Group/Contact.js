@@ -12,6 +12,7 @@ import UserLabel from "./UserLabel";
 import RightArrow from "../Icon/RightArrow";
 import { uri } from "../Link";
 import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Contact({ navigation, route }) {
   const [phoneNumbers, setPhoneNumbers] = useState([]);
@@ -93,14 +94,26 @@ export default function Contact({ navigation, route }) {
           { backgroundColor: selected != [] ? "#51F6CF" : "white" },
         ]}
         onPress={() => {
+          console.log(selected, group);
           axios
             .post(uri + "group/add_group_members/", {
               selected: selected,
               group: group,
             })
             .then((result) => {
+              let pr;
+              (async () => {
+                try {
+                  const value = await AsyncStorage.getItem("profile");
+                  if (value !== null) {
+                    pr = value;
+                  }
+                } catch (error) {
+                  console.log(error);
+                }
+              })();
               if (result.data === "Added") {
-                navigation.navigate("Question");
+                navigation.navigate("Question", { pr });
               }
             })
             .catch((err) => {

@@ -135,7 +135,7 @@ export default function OTP({ navigation }) {
                 navigation.navigate("Username");
               } else {
                 storedata(result.data);
-                const pr = result.data;
+                const pr = JSON.parse(result.data);
                 navigation.navigate("Question", { pr });
               }
             })

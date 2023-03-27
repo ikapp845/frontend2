@@ -3,7 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Second from "./Second";
 import AskQuestion from "./Questonnaire/AskQuestion";
 import Questonnaire from "./Sections/Questonnaire";
-import Story from "./Likes/Story";
+
 import Contact from "./Group/Contact";
 
 export default function Main() {

@@ -38,7 +38,6 @@ export default function Create({ navigation }) {
               username: email,
             })
             .then((result) => {
-              console.log(result.data);
               navigation.navigate("Contact", {
                 group: result.data,
               });
