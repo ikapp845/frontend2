@@ -38,9 +38,10 @@ export default function Create({ navigation }) {
               username: email,
             })
             .then((result) => {
-              if (result.data == "Group created") {
-                navigation.navigate("Contact");
-              }
+              console.log(result.data);
+              navigation.navigate("Contact", {
+                group: result.data,
+              });
             })
             .catch((err) => {
               alert(err.data);

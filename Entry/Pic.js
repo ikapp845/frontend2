@@ -95,7 +95,7 @@ export default function Pic({ navigation }) {
           var photo = {
             uri: image,
             type: "image/jpeg",
-            name: `${username}.jpg`,
+            name: `${email}.jpg`,
           };
           formData.append("image", photo);
           formData.append("username", username);

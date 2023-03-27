@@ -5,7 +5,7 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import * as Contacts from "expo-contacts";
 import BackgroundColour from "../Styles/Background";
 import UserLabel from "./UserLabel";
@@ -13,10 +13,11 @@ import RightArrow from "../Icon/RightArrow";
 import { uri } from "../Link";
 import axios from "axios";
 
-export default function Contact() {
+export default function Contact({ navigation, route }) {
   const [phoneNumbers, setPhoneNumbers] = useState([]);
   const [result, setResult] = useState([]);
   const [selected, setSelected] = useState([]);
+  const { group } = route.params;
 
   const getPhoneNumbers = async () => {
     const { status } = await Contacts.requestPermissionsAsync();
@@ -91,6 +92,21 @@ export default function Contact() {
           styles.bottom,
           { backgroundColor: selected != [] ? "#51F6CF" : "white" },
         ]}
+        onPress={() => {
+          axios
+            .post(uri + "group/add_group_members/", {
+              selected: selected,
+              group: group,
+            })
+            .then((result) => {
+              if (result.data === "Added") {
+                navigation.navigate("Question");
+              }
+            })
+            .catch((err) => {
+              alert(err.data);
+            });
+        }}
       >
         <RightArrow></RightArrow>
       </TouchableOpacity>

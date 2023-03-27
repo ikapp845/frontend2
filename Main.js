@@ -9,15 +9,8 @@ import Contact from "./Group/Contact";
 export default function Main() {
   return (
     <View style={styles.main}>
-      <Contact></Contact>
+      <Second></Second>
     </View>
-    // <NavigationContainer>
-    //   <Stack.Navigator>
-    //     <Stack.Screen name="Entry" component={Entry}></Stack.Screen>
-    //     <Stack.Screen name="Group" component={Group}></Stack.Screen>
-    //     <Stack.Screen name="Question" component={Questionnaire}></Stack.Screen>
-    //   </Stack.Navigator>
-    // </NavigationContainer>
   );
 }
 
