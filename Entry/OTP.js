@@ -128,14 +128,13 @@ export default function OTP({ navigation }) {
           axios
             .get(uri + `user/check_otp/${email}/${otp}/`)
             .then((result) => {
-              console.log(result.data);
               if (result.data == "Fail") {
                 setUsernameerror(true);
               } else if (result.data == "New") {
                 navigation.navigate("Username");
               } else {
                 storedata(result.data);
-                const pr = JSON.parse(result.data);
+                const pr = result.data;
                 navigation.navigate("Question", { pr });
               }
             })

@@ -1,10 +1,10 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import { NavigationContainer } from "@react-navigation/native";
 import Main from "../Questonnaire/Main";
 import CustomDrawer from "../Components/CustomDrawer";
 import { useEffect, useState, createContext } from "react";
 import axios from "axios";
 import { uri } from "../Link";
+import { BackHandler } from "react-native";
 
 // import { ProfileContext } from "../Second";
 
@@ -17,14 +17,39 @@ export default function Questonnaire({ route }) {
   const [stateful, setStateful] = useState(0);
   const [profile, setProfile] = useState();
   const { pr } = route.params;
-
+  if (typeof pr == "string") {
+    try {
+      const data = JSON.parse(pr);
+    } catch (error) {
+      console.log(error);
+    }
+  } else {
+    const data = pr;
+  }
+  const data = pr;
   const a = { setStateful: setStateful, stateful: stateful };
   const b = {
     setSelectedgroup: setSelectedgroup,
     selectedgroup: selectedgroup,
     name: data.name,
     image: data["image_url"],
+    email: data.email,
   };
+  useEffect(() => {
+    const backAction = () => {
+      // Do something when the back button is pressed
+      // For example, show an alert or do nothing
+      return true; // Returning true prevents the back button from going back
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+
+    return () => backHandler.remove();
+  }, []);
+
   useEffect(() => {
     setProfile(pr);
   }, []);

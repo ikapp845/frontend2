@@ -55,7 +55,7 @@ export default function Main(props) {
       });
     axios
       .get(
-        uri + "group/group_question/" + props.selectedgroup + "/" + props.name
+        uri + "group/group_question/" + props.selectedgroup + "/" + props.email
       )
       .then((result) => {
         setQuestions(result.data);
@@ -86,7 +86,11 @@ export default function Main(props) {
       ]}
     >
       <View style={styles.header}>
-        <ProfilePic navigation={props.navigation} val={40}></ProfilePic>
+        <ProfilePic
+          navigation={props.navigation}
+          image={props.image}
+          val={40}
+        ></ProfilePic>
         {resultdata ? (
           <TouchableOpacity
             style={{ alignItems: "center" }}
