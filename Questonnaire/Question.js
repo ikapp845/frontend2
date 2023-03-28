@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import Label from "../Components/Label";
 import LabelAnswered from "../Components/LabelAnswered";
 import axios from "axios";
@@ -6,6 +6,24 @@ import { uri } from "../Link";
 import { useState, useEffect } from "react";
 
 export default function Question(props) {
+  function Comp() {
+    if (props.question[2] == "user") {
+      return (
+        <View style={{ textAlign: "center", alignItems: "center" }}>
+          <Text>Question was asked by someone in the group</Text>
+          <TouchableOpacity style={{ textAlign: "center" }}>
+            <Text>Skip</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={{ textAlign: "center" }}>
+            <Text style={{ color: "red" }}>Report</Text>
+          </TouchableOpacity>
+        </View>
+      );
+    } else {
+      return <View></View>;
+    }
+  }
+
   return (
     <View style={styles.question}>
       <Text style={styles.questiontext}>
@@ -14,19 +32,21 @@ export default function Question(props) {
 
       {props.group_members
         ? props.group_members.map((obj, index) => {
-            if (obj.user.name == "raju") {
+            if (obj.user.name == props.name) {
               return;
             } else {
               if (!props.resultdata) {
                 return (
                   <Label
                     key={index}
+                    hisno={obj.user.email}
+                    myno={props.email}
                     name={obj.user.name}
                     questionid={props.question ? props.question[0] : ""}
                     group={props.group}
                     resultdata={props.resultdata}
                     setResultdata={props.setResultdata}
-                    image={props.image}
+                    image={obj.user.image_url}
                   ></Label>
                 );
               } else {
@@ -43,6 +63,7 @@ export default function Question(props) {
             }
           })
         : ""}
+      <Comp></Comp>
     </View>
   );
 }

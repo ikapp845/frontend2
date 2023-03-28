@@ -1,8 +1,16 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import AskQuestion from "./AskQuestion";
+import { useState } from "react";
 
 export default function Timer() {
+  const [modalvisible, setModalvisible] = useState(false);
+
   return (
     <View style={styles.main}>
+      <AskQuestion
+        modalvisible={modalvisible}
+        setModalvisible={setModalvisible}
+      ></AskQuestion>
       <View style={styles.timer}>
         <View style={styles.tim}>
           <View style={styles.box}>
@@ -30,7 +38,12 @@ export default function Timer() {
       <Text style={{ fontSize: 16, color: "white", marginBottom: 15 }}>
         Skip the weight by{" "}
       </Text>
-      <TouchableOpacity style={styles.invite}>
+      <TouchableOpacity
+        style={styles.invite}
+        onPress={() => {
+          setModalvisible(true);
+        }}
+      >
         <Text style={styles.invitetext}>Ask a Question</Text>
       </TouchableOpacity>
     </View>

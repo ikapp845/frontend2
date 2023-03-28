@@ -26,6 +26,8 @@ const styles = StyleSheet.create({
     height: 70,
     alignItems: "center",
     width: "93%",
+    position: "absolute",
+    bottom: "12%",
   },
   input: {
     width: "75%",

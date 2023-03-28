@@ -25,17 +25,17 @@ export default function First({ navigation }) {
   const [usernameerror, setUsernameerror] = useState(false);
 
   const storedata = async () => {
-    // try {
-    //   const value = await AsyncStorage.getItem("profile");
-    //   if (value !== null) {
-    //     const pr = value;
-    //     navigation.navigate("Question", { pr });
-    //   } else {
-    //     console.log("as");
-    //   }
-    // } catch (e) {
-    //   console.log(e);
-    // }
+    try {
+      const value = await AsyncStorage.getItem("profile");
+      if (value !== null) {
+        const pr = value;
+        navigation.navigate("Question", { pr });
+      } else {
+        console.log("as");
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   useEffect(() => {

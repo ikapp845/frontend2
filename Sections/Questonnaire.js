@@ -17,16 +17,17 @@ export default function Questonnaire({ route }) {
   const [stateful, setStateful] = useState(0);
   const [profile, setProfile] = useState();
   const { pr } = route.params;
+  let data;
   if (typeof pr == "string") {
     try {
-      const data = JSON.parse(pr);
+      data = JSON.parse(pr);
     } catch (error) {
       console.log(error);
     }
   } else {
-    const data = pr;
+    data = pr;
   }
-  const data = pr;
+
   const a = { setStateful: setStateful, stateful: stateful };
   const b = {
     setSelectedgroup: setSelectedgroup,
@@ -49,11 +50,10 @@ export default function Questonnaire({ route }) {
 
     return () => backHandler.remove();
   }, []);
-
   useEffect(() => {
-    setProfile(pr);
+    setProfile(data);
   }, []);
-
+  // console.log(profile);
   useEffect(() => {
     axios
       .get(uri + "group/user_groups/" + data.email)

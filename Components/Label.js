@@ -2,6 +2,7 @@ import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import ProfilePic from "./ProfilePic";
 import axios from "axios";
 import { uri } from "../Link";
+import { useContext } from "react";
 
 export default function Label(props) {
   return (
@@ -10,8 +11,8 @@ export default function Label(props) {
       onPress={() => {
         axios
           .post(uri + "like/", {
-            username1: "raju",
-            username2: props.name,
+            username1: props.myno,
+            username2: props.hisno,
             question: props.questionid,
             group: props.group,
             // username1 - from user

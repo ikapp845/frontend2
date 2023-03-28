@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Button, Touchable } from "react-native";
+import { View, Text, StyleSheet, Keyboard } from "react-native";
 import LikeButton from "../Components/LikeButton";
 import BackgroundColour from "../Styles/Background";
 import ProfilePic from "../Components/ProfilePic";
@@ -21,27 +21,12 @@ export default function Main(props) {
   const [timer, setTimer] = useState(false);
   const [profile] = useContext(ProfileContext);
   const [resultdata, setResultdata] = useState();
-  function QuestionComp() {
-    return (
-      <View
-        style={{
-          width: "100%",
-          alignItems: "center",
-          height: "100%",
-        }}
-      >
-        <Question
-          group_members={display}
-          question={questions[questionnumber]}
-          group={props.selectedgroup}
-          resultdata={resultdata}
-          setResultdata={setResultdata}
-          image={profile ? profile.image : ""}
-        ></Question>
-        <UsernameSearch serach={search} setSearch={setSearch}></UsernameSearch>
-      </View>
-    );
-  }
+
+  // function QuestionComp() {
+  //   return (
+
+  //   );
+  // }
 
   useEffect(() => {
     axios
@@ -77,7 +62,6 @@ export default function Main(props) {
       }
     }
   }, [search]);
-
   return (
     <View
       style={[
@@ -121,7 +105,32 @@ export default function Main(props) {
         )}
         <LikeButton></LikeButton>
       </View>
-      {timer ? <Timer></Timer> : <QuestionComp></QuestionComp>}
+      {timer ? (
+        <Timer></Timer>
+      ) : (
+        <View
+          style={{
+            width: "100%",
+            alignItems: "center",
+            height: "100%",
+          }}
+        >
+          <Question
+            group_members={display}
+            question={questions[questionnumber]}
+            group={props.selectedgroup}
+            resultdata={resultdata}
+            setResultdata={setResultdata}
+            name={profile ? profile.name : ""}
+            image={profile ? profile.image : ""}
+            email={profile ? profile.email : ""}
+          ></Question>
+          <UsernameSearch
+            search={search}
+            setSearch={setSearch}
+          ></UsernameSearch>
+        </View>
+      )}
     </View>
   );
 }
