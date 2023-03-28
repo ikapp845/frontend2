@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import GroupMembers from "../Likes/GroupMembers";
 import { useState } from "react";
 
-export default function GroupMembersIcon() {
+export default function GroupMembersIcon(props) {
   const [modalvisible, setModalvisible] = useState(false);
   return (
     <TouchableOpacity
@@ -14,6 +14,7 @@ export default function GroupMembersIcon() {
       <GroupMembers
         modalvisible={modalvisible}
         setModalvisible={setModalvisible}
+        group_members={props.group_members}
       ></GroupMembers>
       <View style={[styles.circle, { backgroundColor: "black" }]}></View>
       <View

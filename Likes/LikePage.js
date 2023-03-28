@@ -19,6 +19,7 @@ export default function LikePage(props) {
     setQuestion: setQuestion,
     user: user,
     setUser: setUser,
+    email: props.email,
   };
 
   return (
@@ -35,6 +36,8 @@ export default function LikePage(props) {
         modalvisible={modalvisible}
         setModalvisible={setModalvisible}
         question={question}
+        name={props.name}
+        image={props.image}
         user={user ? user : { total_question_like: 0, question_likes: 0 }}
       ></LikeOpen>
 
@@ -59,7 +62,9 @@ export default function LikePage(props) {
             <Text style={{ fontSize: 18, textAlign: "center", width: "80%" }}>
               Likes
             </Text>
-            <GroupMembersIcon></GroupMembersIcon>
+            <GroupMembersIcon
+              group_members={props.group_members}
+            ></GroupMembersIcon>
           </View>
           <Tab.Navigator
             screenOptions={{

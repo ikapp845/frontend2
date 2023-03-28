@@ -22,7 +22,7 @@ export default function Popup(props) {
             if (props.head3 == "leave") {
               axios
                 .post(uri + "group/leave/", {
-                  username: "raju",
+                  username: props.email,
                   group: props.currentgroup,
                 })
                 .then((result) => {

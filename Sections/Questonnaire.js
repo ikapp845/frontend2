@@ -27,7 +27,7 @@ export default function Questonnaire({ route }) {
   } else {
     data = pr;
   }
-
+  console.log(data);
   const a = { setStateful: setStateful, stateful: stateful };
   const b = {
     setSelectedgroup: setSelectedgroup,

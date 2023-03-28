@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import AskQuestion from "./AskQuestion";
 import { useState } from "react";
 
-export default function Timer() {
+export default function Timer(props) {
   const [modalvisible, setModalvisible] = useState(false);
 
   return (
@@ -10,6 +10,7 @@ export default function Timer() {
       <AskQuestion
         modalvisible={modalvisible}
         setModalvisible={setModalvisible}
+        group={props.group}
       ></AskQuestion>
       <View style={styles.timer}>
         <View style={styles.tim}>

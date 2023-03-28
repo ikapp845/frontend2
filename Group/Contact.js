@@ -94,7 +94,6 @@ export default function Contact({ navigation, route }) {
           { backgroundColor: selected != [] ? "#51F6CF" : "white" },
         ]}
         onPress={() => {
-          console.log(selected, group);
           axios
             .post(uri + "group/add_group_members/", {
               selected: selected,

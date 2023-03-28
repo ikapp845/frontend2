@@ -16,7 +16,7 @@ export default function Likes(props) {
   const [likes, setLikes] = useState();
   useEffect(() => {
     axios
-      .get(uri + "like/likes/" + "raju/")
+      .get(uri + "like/likes/" + props.email + "/")
       .then((result) => {
         setLikes(result.data);
       })
@@ -30,12 +30,13 @@ export default function Likes(props) {
     >
       {likes
         ? likes.map((obj, index) => {
+            console.log(obj);
             let gender;
             let gendertext;
-            if (obj.from_gender == "male") {
+            if (obj.from_gender == "boy") {
               gender = <Blueheart></Blueheart>;
               gendertext = "Boy";
-            } else if (obj.from_gender == "female") {
+            } else if (obj.from_gender == "girl") {
               gender = <Pinkheart></Pinkheart>;
               gendertext = "Girl";
             } else {

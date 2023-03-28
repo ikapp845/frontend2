@@ -67,6 +67,7 @@ export default function CustomDrawer(props) {
         currentgroup={currentgroup}
         stateful={props.stateful}
         setStateful={props.setStateful}
+        email={props.email}
       ></Popup>
       <View style={styles.top}>
         <View style={styles.profilepic}>

@@ -3,7 +3,7 @@ import Like from "../Icon/Like";
 import { useState } from "react";
 import LikePage from "../Likes/LikePage";
 
-export default function LikeButton() {
+export default function LikeButton(props) {
   const [modalvisible, setModalvisible] = useState(false);
   return (
     <TouchableOpacity
@@ -13,6 +13,10 @@ export default function LikeButton() {
       }}
     >
       <LikePage
+        email={props.email}
+        name={props.name}
+        image={props.image}
+        group_members={props.group_members}
         modalvisible={modalvisible}
         setModalvisible={setModalvisible}
       ></LikePage>

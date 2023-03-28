@@ -6,23 +6,23 @@ import { uri } from "../Link";
 import { useState, useEffect } from "react";
 
 export default function Question(props) {
-  function Comp() {
-    if (props.question[2] == "user") {
-      return (
-        <View style={{ textAlign: "center", alignItems: "center" }}>
-          <Text>Question was asked by someone in the group</Text>
-          <TouchableOpacity style={{ textAlign: "center" }}>
-            <Text>Skip</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={{ textAlign: "center" }}>
-            <Text style={{ color: "red" }}>Report</Text>
-          </TouchableOpacity>
-        </View>
-      );
-    } else {
-      return <View></View>;
-    }
-  }
+  // function Comp() {
+  //   if (props.question[2] == "user") {
+  //     return (
+  //       <View style={{ textAlign: "center", alignItems: "center" }}>
+  //         <Text>Question was asked by someone in the group</Text>
+  //         <TouchableOpacity style={{ textAlign: "center" }}>
+  //           <Text>Skip</Text>
+  //         </TouchableOpacity>
+  //         <TouchableOpacity style={{ textAlign: "center" }}>
+  //           <Text style={{ color: "red" }}>Report</Text>
+  //         </TouchableOpacity>
+  //       </View>
+  //     );
+  //   } else {
+  //     return <View></View>;
+  //   }
+  // }
 
   return (
     <View style={styles.question}>
@@ -63,7 +63,7 @@ export default function Question(props) {
             }
           })
         : ""}
-      <Comp></Comp>
+      {/* <Comp></Comp> */}
     </View>
   );
 }

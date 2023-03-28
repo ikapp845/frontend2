@@ -15,7 +15,8 @@ export default function LikeOpen(props) {
         <View style={styles.box}>
           <Text style={styles.question}>{props.question}</Text>
           <LabelAnswered
-            name={"raju"}
+            name={props.name}
+            image={props.image}
             total_likes={
               props.user.total_question_like
                 ? props.user.total_question_like

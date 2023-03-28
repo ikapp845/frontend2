@@ -12,7 +12,7 @@ import axios from "axios";
 import { uri } from "../Link";
 
 export default function AskQuestion(props) {
-  let ques;
+  const [ques, setQues] = useState("");
   const [count, setCount] = useState(0);
   return (
     <Modal
@@ -43,8 +43,8 @@ export default function AskQuestion(props) {
           <TouchableOpacity
             onPress={() => {
               axios
-                .get(uri + "add_question", {
-                  group: "22",
+                .post(uri + "group/add_question/", {
+                  group: props.group,
                   question: ques,
                 })
                 .then((result) => {
@@ -76,7 +76,7 @@ export default function AskQuestion(props) {
             value={ques}
             onChangeText={(e) => {
               if (ques.length < 60) {
-                ques = e;
+                setQues(e);
                 setCount(ques.length);
               }
             }}

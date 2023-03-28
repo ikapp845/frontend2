@@ -1,4 +1,4 @@
-import { View, Modal, StyleSheet, Text } from "react-native";
+import { View, Modal, StyleSheet, Text, ScrollView } from "react-native";
 import BackBlack from "../Components/BackBlack";
 import Members from "./Members";
 
@@ -23,7 +23,18 @@ export default function GroupMembers(props) {
             <BackBlack></BackBlack>
             <Text style={{ fontSize: 16, marginTop: 18 }}>Group Members</Text>
           </View>
-          <Members></Members>
+          <ScrollView>
+            {props.group_members
+              ? props.group_members.map((obj) => (
+                  <Members
+                    key={obj.user.id}
+                    likes={obj.total_likes}
+                    name={obj.user.name}
+                    image={obj.user.image_url}
+                  ></Members>
+                ))
+              : ""}
+          </ScrollView>
         </View>
       </View>
     </Modal>

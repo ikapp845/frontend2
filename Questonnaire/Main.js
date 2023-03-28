@@ -103,10 +103,15 @@ export default function Main(props) {
         ) : (
           <Text style={styles.slidetext}>{questionnumber + 1} of 10</Text>
         )}
-        <LikeButton></LikeButton>
+        <LikeButton
+          email={profile ? profile.email : ""}
+          name={profile ? profile.name : ""}
+          image={profile ? profile.image_url : ""}
+          group_members={group_members ? group_members : ""}
+        ></LikeButton>
       </View>
       {timer ? (
-        <Timer></Timer>
+        <Timer group={props.selectedgroup}></Timer>
       ) : (
         <View
           style={{
