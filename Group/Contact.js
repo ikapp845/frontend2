@@ -100,20 +100,19 @@ export default function Contact({ navigation, route }) {
               group: group,
             })
             .then((result) => {
-              let pr;
               (async () => {
                 try {
                   const value = await AsyncStorage.getItem("profile");
                   if (value !== null) {
                     pr = value;
+                    if (result.data == "Added") {
+                      navigation.navigate("Question", { pr });
+                    }
                   }
                 } catch (error) {
                   console.log(error);
                 }
               })();
-              if (result.data === "Added") {
-                navigation.navigate("Question", { pr });
-              }
             })
             .catch((err) => {
               alert(err.data);

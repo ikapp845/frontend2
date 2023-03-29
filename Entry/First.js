@@ -24,23 +24,23 @@ export default function First({ navigation }) {
   const [state, setState] = useState(false);
   const [usernameerror, setUsernameerror] = useState(false);
 
-  const storedata = async () => {
-    try {
-      const value = await AsyncStorage.getItem("profile");
-      if (value !== null) {
-        const pr = value;
-        navigation.navigate("Question", { pr });
-      } else {
-        console.log("as");
-      }
-    } catch (e) {
-      console.log(e);
-    }
-  };
+  // const storedata = async () => {
+  //   try {
+  //     const value = await AsyncStorage.getItem("profile");
+  //     if (value !== null) {
+  //       const pr = value;
+  //       navigation.navigate("Question", { pr });
+  //     } else {
+  //       console.log("as");
+  //     }
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // };
 
-  useEffect(() => {
-    storedata();
-  }, []);
+  // useEffect(() => {
+  //   storedata();
+  // }, []);
 
   useEffect(() => {
     if (email === "") {

@@ -17,6 +17,7 @@ export default function Questonnaire({ route }) {
   const [stateful, setStateful] = useState(0);
   const [profile, setProfile] = useState();
   const { pr } = route.params;
+
   let data;
   if (typeof pr == "string") {
     try {
@@ -27,7 +28,7 @@ export default function Questonnaire({ route }) {
   } else {
     data = pr;
   }
-  console.log(data);
+
   const a = { setStateful: setStateful, stateful: stateful };
   const b = {
     setSelectedgroup: setSelectedgroup,

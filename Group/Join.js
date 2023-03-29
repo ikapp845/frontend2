@@ -11,6 +11,7 @@ import axios from "axios";
 import { uri } from "../Link";
 import { useContext, useEffect } from "react";
 import { EmailContext } from "../Second";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Join({ navigation }) {
   const [link, setLink] = useState("");
@@ -50,9 +51,20 @@ export default function Join({ navigation }) {
               username: email,
             })
             .then((result) => {
-              if (result.data == "Success") {
-                navigation.navigate("Question");
-              }
+              console.log(result.data);
+              (async () => {
+                try {
+                  const value = await AsyncStorage.getItem("profile");
+                  if (value !== null) {
+                    let pr = value;
+                    if (result.data == "Success") {
+                      navigation.navigate("Question", { pr });
+                    }
+                  }
+                } catch (error) {
+                  console.log(error);
+                }
+              })();
             })
             .catch((err) => {
               alert(err.data);

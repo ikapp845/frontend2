@@ -25,11 +25,7 @@ export default function LikeOpen(props) {
             likes={props.user.question_likes ? props.user.question_likes : 0}
           ></LabelAnswered>
         </View>
-        <TouchableOpacity
-          style={[styles.common, styles.sent, { marginTop: "30%" }]}
-        >
-          <Text style={styles.text}>Who sent this</Text>
-        </TouchableOpacity>
+
         <TouchableOpacity style={[styles.reply, styles.common]}>
           <Text style={styles.text}>Reply</Text>
         </TouchableOpacity>
