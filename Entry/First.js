@@ -10,37 +10,30 @@ import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { uri } from "../Link";
 import { EmailContext, ProfileContext } from "../Second";
-import {
-  useFonts,
-  PaytoneOne_400Regular,
-} from "@expo-google-fonts/paytone-one";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function First({ navigation }) {
-  let [fontsLoaded] = useFonts({
-    PaytoneOne_400Regular,
-  });
   const [email, setEmail] = useContext(EmailContext);
   const [state, setState] = useState(false);
   const [usernameerror, setUsernameerror] = useState(false);
 
-  // const storedata = async () => {
-  //   try {
-  //     const value = await AsyncStorage.getItem("profile");
-  //     if (value !== null) {
-  //       const pr = value;
-  //       navigation.navigate("Question", { pr });
-  //     } else {
-  //       console.log("as");
-  //     }
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // };
+  const storedata = async () => {
+    try {
+      const value = await AsyncStorage.getItem("profile");
+      if (value !== null) {
+        const pr = value;
+        navigation.navigate("Question", { pr });
+      } else {
+        console.log("as");
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
-  // useEffect(() => {
-  //   storedata();
-  // }, []);
+  useEffect(() => {
+    storedata();
+  }, []);
 
   useEffect(() => {
     if (email === "") {
@@ -50,9 +43,6 @@ export default function First({ navigation }) {
     }
   }, [email]);
 
-  if (!fontsLoaded) {
-    return null;
-  }
   return (
     <View style={BackgroundColour.back}>
       <View

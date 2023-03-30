@@ -12,7 +12,7 @@ import { useState, useContext } from "react";
 import DownPopup from "../Components/DownPopup";
 import Popup from "../Components/Popup";
 
-export default function CustomDrawer(props) {
+export default function CustomDrawer(props, { navigation }) {
   const [modalvisiblegroup, setModalvisiblegroup] = useState(false);
   const [modalvisiblemain, setModalvisiblemain] = useState(false);
   const [modalvisiblepop, setModalvisiblepop] = useState(false);
@@ -52,7 +52,10 @@ export default function CustomDrawer(props) {
       ></DownPopup>
       <DownPopup
         data={[
-          { name: "Share Invite Link", function: share },
+          {
+            name: "Share Invite Link" + (currentgroup ? currentgroup : ""),
+            function: share,
+          },
           { name: "Leave from group", function: leavegroup },
         ]}
         modalvisible={modalvisiblegroup}
@@ -98,7 +101,7 @@ export default function CustomDrawer(props) {
       <TouchableOpacity
         style={styles.create}
         onPress={() => {
-          setModalvisiblemain(true);
+          navigation.navigate("Group");
         }}
       >
         <Plus style={{ marginLeft: 10 }}></Plus>

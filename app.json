@@ -1,14 +1,21 @@
 {
   "expo": {
-    "name": "ik",
+    "name": "ik beta-1",
     "slug": "ik",
     "version": "1.0.0",
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "splash": {
       "image": "./assets/logo.png",
       "backgroundColor": "#b793d6"
     },
-    "icon": "./assets/icon.png"
+    "icon": "./assets/icon.png",
+    "extra": {
+      "eas": {
+        "projectId": "3da7c2e2-a9df-4ef4-ac1a-cd964a39ea45"
+      }
+    }
   },
   "android": {
     "adaptiveIcon": {
